@@ -15,7 +15,7 @@ export default function DetailsSection() {
   return (
     <section
       id="details"
-      className="relative min-h-[100dvh] w-full flex items-center justify-center px-4 sm:px-8 py-20 overflow-hidden bg-[#12141C]"
+      className="relative min-h-screen w-full flex items-center justify-center px-4 sm:px-8 py-0 md:py-20 overflow-hidden bg-[#12141C]"
     >
       {/* 1. Full-Bleed Frisco Hall Event Center Background (HD Twilight Photo - Desktop only) */}
       <div className="hidden md:block absolute inset-0 z-0">
@@ -45,7 +45,7 @@ export default function DetailsSection() {
       </div>
 
       {/* 2A. Mobile Details Layout (Pushed higher up into upper canvas) */}
-      <div className="md:hidden relative z-10 w-full max-w-sm mx-auto min-h-[100dvh] flex flex-col justify-between pt-6 xs:pt-7 pb-5 px-5">
+      <div className="md:hidden relative z-10 w-full max-w-sm mx-auto min-h-screen flex flex-col justify-between pt-6 xs:pt-7 pb-2 px-5">
         
         {/* Top Header & Details List */}
         <div className="w-full flex flex-col">
@@ -159,9 +159,9 @@ export default function DetailsSection() {
           </div>
         </div>
 
-        {/* Lower Empty Space Over Background: Script Quote */}
-        <div className="w-full text-center mt-auto pt-4 pb-2 z-10">
-          <p className="font-script text-white text-[21px] xs:text-[23px] sm:text-[26px] leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+        {/* Lower Empty Space Over Background: Script Quote (Positioned lower on the pavement) */}
+        <div className="w-full text-center mt-auto pt-2 pb-0.5 z-10">
+          <p className="font-script text-white text-[20px] xs:text-[22px] sm:text-[25px] leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
             Good music. Great company.<br />
             Unforgettable moments.
           </p>

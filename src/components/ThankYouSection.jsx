@@ -6,7 +6,7 @@ export default function ThankYouSection({ rsvpSubmission }) {
   return (
     <section
       id="thank-you"
-      className="relative min-h-[100dvh] w-full flex flex-col justify-between items-center text-center px-5 sm:px-8 pt-20 pb-10 overflow-hidden bg-[#12141C]"
+      className="relative min-h-screen w-full flex flex-col justify-between items-center text-center px-5 sm:px-8 pt-16 md:pt-20 pb-8 md:pb-10 overflow-hidden bg-[#12141C]"
     >
       {/* Full-Bleed Luxury Cocktail Lounge Background (Using uploaded thank_you_bg.jpg) */}
       <div className="absolute inset-0 z-0">

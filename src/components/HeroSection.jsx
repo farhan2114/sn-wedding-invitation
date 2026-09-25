@@ -13,7 +13,7 @@ export default function HeroSection({ onScrollDown }) {
   return (
     <section
       id="invitation"
-      className="relative min-h-[100dvh] w-full flex items-center justify-center px-4 sm:px-8 md:px-12 py-16 overflow-hidden bg-[#12141C]"
+      className="relative min-h-screen w-full flex items-center justify-center px-4 sm:px-8 md:px-12 py-16 overflow-hidden bg-[#12141C]"
     >
       {/* 1. Room Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -61,8 +61,8 @@ export default function HeroSection({ onScrollDown }) {
       </div>
 
       {/* 5. Main Hero Content Layout */}
-      {/* 5A. Mobile Layout (matching reference screenshot media_1790353791004.png) */}
-      <div className="md:hidden relative z-20 w-full h-[100dvh] flex flex-col justify-between items-center pt-2.5 xs:pt-3 pb-16 xs:pb-20 px-4 overflow-hidden">
+      {/* 5A. Mobile Layout */}
+      <div className="md:hidden relative z-20 w-full min-h-screen flex flex-col justify-between items-center pt-2.5 xs:pt-3 pb-12 xs:pb-14 px-4 overflow-hidden">
         
         {/* Top Typography & Logo (Shifted higher up into dark ambient ceiling space) */}
         <div className="flex flex-col items-center text-center z-20">

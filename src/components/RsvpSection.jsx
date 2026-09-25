@@ -75,7 +75,7 @@ export default function RsvpSection({ onRsvpSubmitted }) {
   return (
     <section
       id="rsvp"
-      className="relative min-h-[100dvh] w-full flex items-center justify-center px-4 sm:px-8 py-20 overflow-hidden bg-[#12141C]"
+      className="relative min-h-screen w-full flex items-center justify-center px-4 sm:px-8 py-16 md:py-20 overflow-hidden bg-[#12141C]"
     >
       {/* 1. Full-Bleed Background without Opacity Reduction (100% full opacity) */}
       <div className="absolute inset-0 z-0">
