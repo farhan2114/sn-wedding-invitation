@@ -28,20 +28,21 @@ export default function DetailsSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#12141C] via-transparent to-[#12141C]/80" />
       </div>
 
-      {/* Mobile Ambient Background: Deep luxury midnight navy gradient */}
-      <div className="md:hidden absolute inset-0 z-0 bg-gradient-to-b from-[#090C14] via-[#0E1322] to-[#090C14]" />
-
-      {/* Mobile Lower Background: Full-Bleed Building Image shifted right to show "THE CROWN" sign */}
-      <div className="md:hidden absolute bottom-0 left-0 right-0 w-full h-[48%] z-0 pointer-events-none overflow-hidden">
+      {/* Mobile Venue Background: Seamless blend with zero harsh borders or separation lines */}
+      <div className="md:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#12141C]">
         <img
           src="/assets/the_crown_night.jpg"
           alt="The Crown Venue"
           className="w-full h-full object-cover object-[82%_bottom]"
+          style={{
+            maskImage: 'linear-gradient(to bottom, transparent 0%, transparent 22%, rgba(0,0,0,0.3) 38%, rgba(0,0,0,0.85) 55%, black 72%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, transparent 22%, rgba(0,0,0,0.3) 38%, rgba(0,0,0,0.85) 55%, black 72%)'
+          }}
         />
-        {/* Soft top gradient blend into upper dark midnight section background */}
-        <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#090C14] via-[#090C14]/50 to-transparent" />
-        {/* Dark bottom gradient overlay for script text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+        {/* Deep seamless gradient to ensure upper text and buttons are pure luxury dark backdrop */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#12141C] via-[#12141C]/40 via-45% to-transparent pointer-events-none" />
+        {/* Dark bottom gradient overlay for script text legibility over pavement */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#12141C]/95 via-black/30 to-transparent pointer-events-none" />
       </div>
 
       {/* 2A. Mobile Details Layout (Pushed higher up into upper canvas) */}

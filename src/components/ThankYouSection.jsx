@@ -71,9 +71,9 @@ export default function ThankYouSection({ rsvpSubmission }) {
             Thank You
           </h2>
 
-          {/* Subtext: increased thickness and size to eliminate overlap and improve visibility */}
-          <p className="text-xs sm:text-[13px] font-sans-ui uppercase tracking-[0.28em] text-[#F3EFE4] font-medium max-w-sm mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-            For being a part of our journey
+          {/* Subtext: two lines on mobile, single line on desktop */}
+          <p className="text-xs sm:text-[13px] font-sans-ui uppercase tracking-[0.28em] text-[#F3EFE4] font-medium max-w-sm mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] leading-relaxed">
+            For being a part of<br className="sm:hidden" /> our journey
           </p>
 
           {/* Horizontal Divider with Diamond - increased thickness */}
@@ -94,7 +94,7 @@ export default function ThankYouSection({ rsvpSubmission }) {
             className="font-cormorant font-normal text-lg sm:text-xl md:text-2xl text-[#FAF6EE] leading-relaxed max-w-sm sm:max-w-md mx-auto mb-10 drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
             style={{ letterSpacing: '3px' }}
           >
-            “Your presence means the world to us.”
+            “Your presence means<br className="sm:hidden" /> the world to us.”
           </p>
         </div>
 
