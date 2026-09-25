@@ -62,30 +62,48 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
 
       {/* 5. Main Hero Content Layout */}
       {/* 5A. Mobile Layout (matching reference screenshot media_1790353791004.png) */}
-      <div className="md:hidden relative z-20 w-full h-[100dvh] flex flex-col justify-between items-center pt-16 pb-4 px-4 overflow-hidden">
+      <div className="md:hidden relative z-20 w-full h-[100dvh] flex flex-col justify-between items-center pt-14 pb-5 px-4 overflow-hidden">
         
-        {/* Top Typography */}
+        {/* Top Typography & Logo */}
         <div className="flex flex-col items-center text-center mt-1 z-20">
+          {/* Logo brought down from navbar right above Together lines */}
+          <div className="flex justify-center items-center mb-2.5">
+            <img
+              src="/assets/sn_logo.png"
+              alt="S & N Logo"
+              className="h-12 sm:h-14 w-auto object-contain drop-shadow-[0_4px_16px_rgba(210,168,92,0.65)] filter brightness-105"
+            />
+          </div>
+
           <p className="text-[10px] sm:text-[11px] font-sans-ui uppercase tracking-[0.28em] text-[#A9A6A0] font-normal leading-relaxed mb-1.5 drop-shadow-sm">
             Together<br />
             is a beautiful<br />
             place to be
           </p>
-          <h1 className="font-display text-[44px] xs:text-[48px] sm:text-5xl tracking-wide font-normal leading-[1.06] mb-2 bg-gradient-to-b from-[#FFFFFF] via-[#F4E3C5] to-[#C89B48] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+          <h1
+            className="font-display text-[46px] xs:text-[50px] sm:text-[54px] tracking-wide font-normal leading-[1.05] mb-2"
+            style={{
+              background: 'linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 60%, #F8ECD2 80%, #DFC07A 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              filter: 'drop-shadow(0 2px 10px rgba(0, 0, 0, 0.95))',
+              display: 'inline-block'
+            }}
+          >
             Sangeet &amp;<br />
             Cocktails
           </h1>
-          <p className="text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.24em] text-white font-medium leading-relaxed drop-shadow-sm">
+          <p className="text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.24em] text-white font-medium leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
             A night of music, celebration<br />and love
           </p>
         </div>
 
-        {/* Center: Glowing Neon "Let's Celebrate" script button at the bride's waist */}
+        {/* Center: Glowing Neon "Let's Celebrate" script button lowered towards bride's waist */}
         <div className="relative flex-1 w-full flex items-center justify-start z-20">
           <button
             onClick={onUnlockAndScroll}
             disabled={isTransitioning}
-            className={`absolute left-2 sm:left-5 top-[56%] -translate-y-1/2 font-script text-[38px] sm:text-[46px] text-[#FFF2D1] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none ${
+            className={`absolute left-3 sm:left-6 top-[65%] -translate-y-1/2 font-script text-[40px] sm:text-[48px] text-[#FFF4D6] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none ${
               isTransitioning ? 'scale-110' : ''
             }`}
             style={{
@@ -98,25 +116,24 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
           </button>
         </div>
 
-        {/* Bottom Date, Venue & Scroll Button */}
-        <div className="flex flex-col items-center text-center z-20 w-full pb-3 pt-1">
+        {/* Bottom Date, Venue & Explicit "Click Let's Celebrate" Prompt */}
+        <div className="flex flex-col items-center text-center z-20 w-full pb-5 pt-1">
           <p className="text-[11px] sm:text-xs font-sans-ui uppercase tracking-[0.24em] text-[#F3EFE4] font-medium mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             Saturday, November 21, 2026
           </p>
-          <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+          <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-3.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             Frisco Hall Event Center, Texas
           </p>
 
-          {/* Circular Scroll Down Button */}
+          {/* Click "Let's Celebrate" Prompt */}
           <button
             onClick={onUnlockAndScroll}
-            className="flex flex-col items-center group outline-none focus:outline-none cursor-pointer active:scale-95 transition-transform"
-            aria-label="Scroll to details"
+            className="flex items-center space-x-2 text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.24em] text-[#E7CE9C] hover:text-white transition-colors cursor-pointer outline-none focus:outline-none py-1.5 px-4 rounded-full border border-[#D2A85C]/40 bg-[#12141C]/65 backdrop-blur-xs animate-pulse active:scale-95"
+            aria-label="Click Let's Celebrate to Enter"
           >
-            <div className="w-8 h-8 rounded-full border border-[#D2A85C]/70 bg-[#12141C]/40 backdrop-blur-xs flex items-center justify-center mb-1 group-hover:border-[#D2A85C] shadow-lg transition-colors">
-              <ChevronDown className="w-4 h-4 text-[#D2A85C] animate-bounce" />
-            </div>
-            <span className="text-[8px] uppercase tracking-[0.26em] text-[#A9A6A0]">SCROLL</span>
+            <Sparkles className="w-3 h-3 text-[#D2A85C]" />
+            <span>Click "Let's Celebrate" to Enter</span>
+            <Sparkles className="w-3 h-3 text-[#D2A85C]" />
           </button>
         </div>
       </div>
