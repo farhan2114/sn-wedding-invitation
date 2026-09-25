@@ -62,16 +62,16 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
 
       {/* 5. Main Hero Content Layout */}
       {/* 5A. Mobile Layout (matching reference screenshot media_1790353791004.png) */}
-      <div className="md:hidden relative z-20 w-full h-[100dvh] flex flex-col justify-between items-center pt-7 xs:pt-8 pb-9 xs:pb-11 px-4 overflow-hidden">
+      <div className="md:hidden relative z-20 w-full h-[100dvh] flex flex-col justify-between items-center pt-2.5 xs:pt-3 pb-16 xs:pb-20 px-4 overflow-hidden">
         
-        {/* Top Typography & Logo (Shifted higher up into dark ambient space) */}
-        <div className="flex flex-col items-center text-center mt-0.5 z-20">
-          {/* Logo brought down from navbar right above Together lines */}
-          <div className="flex justify-center items-center mb-1.5">
+        {/* Top Typography & Logo (Shifted higher up into dark ambient ceiling space) */}
+        <div className="flex flex-col items-center text-center z-20">
+          {/* Logo centered cleanly right above Together lines */}
+          <div className="flex justify-center items-center mb-1">
             <img
               src="/assets/sn_logo.png"
               alt="S & N Logo"
-              className="h-11 xs:h-12 sm:h-14 w-auto object-contain drop-shadow-[0_4px_16px_rgba(210,168,92,0.65)] filter brightness-105"
+              className="h-10 xs:h-11 sm:h-13 w-auto object-contain drop-shadow-[0_4px_16px_rgba(210,168,92,0.65)] filter brightness-105"
             />
           </div>
 
@@ -81,7 +81,7 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
             place to be
           </p>
           <h1
-            className="font-display text-[44px] xs:text-[48px] sm:text-[54px] tracking-wide font-normal leading-[1.05] mb-1.5"
+            className="font-display text-[42px] xs:text-[46px] sm:text-[52px] tracking-wide font-normal leading-[1.03] mb-1.5"
             style={{
               background: 'linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 60%, #F8ECD2 80%, #DFC07A 100%)',
               WebkitBackgroundClip: 'text',
@@ -98,37 +98,35 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
           </p>
         </div>
 
-        {/* Center: Glowing Neon "Let's Celebrate" script button (position preserved at top-[65%]) */}
-        <div className="relative flex-1 w-full flex items-center justify-start z-20">
-          <button
-            onClick={onUnlockAndScroll}
-            disabled={isTransitioning}
-            className={`absolute left-3 sm:left-6 top-[65%] -translate-y-1/2 font-script text-[40px] sm:text-[48px] text-[#FFF4D6] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none ${
-              isTransitioning ? 'scale-110' : ''
-            }`}
-            style={{
-              textShadow: '0 0 10px rgba(255, 235, 180, 0.95), 0 0 25px rgba(210, 168, 92, 0.9), 0 0 45px rgba(210, 168, 92, 0.75)',
-              filter: 'drop-shadow(0 0 15px rgba(210, 168, 92, 0.9))'
-            }}
-            aria-label="Let's Celebrate — Click to enter"
-          >
-            Let's<br />Celebrate
-          </button>
-        </div>
+        {/* Center: Glowing Neon "Let's Celebrate" script button (position locked at top-[65%]) */}
+        <button
+          onClick={onUnlockAndScroll}
+          disabled={isTransitioning}
+          className={`absolute left-3 sm:left-6 top-[65%] -translate-y-1/2 z-30 font-script text-[40px] sm:text-[48px] text-[#FFF4D6] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none ${
+            isTransitioning ? 'scale-110' : ''
+          }`}
+          style={{
+            textShadow: '0 0 10px rgba(255, 235, 180, 0.95), 0 0 25px rgba(210, 168, 92, 0.9), 0 0 45px rgba(210, 168, 92, 0.75)',
+            filter: 'drop-shadow(0 0 15px rgba(210, 168, 92, 0.9))'
+          }}
+          aria-label="Let's Celebrate — Click to enter"
+        >
+          Let's<br />Celebrate
+        </button>
 
-        {/* Bottom Date, Venue & Explicit "Click Let's Celebrate" Prompt (Shifted higher up) */}
-        <div className="flex flex-col items-center text-center z-20 w-full mb-1">
+        {/* Bottom Date, Venue & Explicit "Click Let's Celebrate" Prompt (Lifted up to clear mobile home bars) */}
+        <div className="flex flex-col items-center text-center z-20 w-full mb-3 xs:mb-4">
           <p className="text-[11px] sm:text-xs font-sans-ui uppercase tracking-[0.24em] text-[#F3EFE4] font-medium mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             Saturday, November 21, 2026
           </p>
-          <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+          <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-2.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             Frisco Hall Event Center, Texas
           </p>
 
           {/* Click "Let's Celebrate" Prompt */}
           <button
             onClick={onUnlockAndScroll}
-            className="flex items-center space-x-2 text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.24em] text-[#E7CE9C] hover:text-white transition-colors cursor-pointer outline-none focus:outline-none py-1.5 px-4 rounded-full border border-[#D2A85C]/40 bg-[#12141C]/75 backdrop-blur-xs animate-pulse active:scale-95 shadow-lg"
+            className="flex items-center space-x-2 text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.24em] text-[#E7CE9C] hover:text-white transition-colors cursor-pointer outline-none focus:outline-none py-1.5 px-4 rounded-full border border-[#D2A85C]/40 bg-[#12141C]/80 backdrop-blur-xs animate-pulse active:scale-95 shadow-lg"
             aria-label="Click Let's Celebrate to Enter"
           >
             <Sparkles className="w-3 h-3 text-[#D2A85C]" />
