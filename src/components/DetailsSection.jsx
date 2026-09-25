@@ -17,11 +17,11 @@ export default function DetailsSection() {
       id="details"
       className="relative min-h-screen w-full flex items-center justify-center px-4 sm:px-8 py-0 md:py-20 overflow-hidden bg-[#12141C]"
     >
-      {/* 1. Full-Bleed Frisco Hall Event Center Background (HD Twilight Photo - Desktop only) */}
+      {/* 1. Full-Bleed The Crown Event Center Background (HD Twilight Photo - Desktop only) */}
       <div className="hidden md:block absolute inset-0 z-0">
         <div
-          className="absolute inset-0 bg-cover bg-center sm:bg-[center_top_30%]"
-          style={{ backgroundImage: `url('/assets/venue_hd_full.jpg')` }}
+          className="absolute inset-0 bg-cover bg-center sm:bg-[center_center]"
+          style={{ backgroundImage: `url('/assets/the_crown_night.jpg')` }}
         />
         {/* Dark Scrim Gradients for contrast while keeping the lit venue visible */}
         <div className="absolute inset-0 bg-[#0A0C12]/55 backdrop-blur-[0.5px]" />
