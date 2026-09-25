@@ -28,11 +28,24 @@ export default function DetailsSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#12141C] via-transparent to-[#12141C]/80" />
       </div>
 
-      {/* Mobile Ambient Background: Deep luxury midnight navy gradient matching reference */}
-      <div className="md:hidden absolute inset-0 z-0 bg-gradient-to-b from-[#090C14] via-[#0E1322] to-[#0A0D16]" />
+      {/* Mobile Ambient Background: Deep luxury midnight navy gradient */}
+      <div className="md:hidden absolute inset-0 z-0 bg-gradient-to-b from-[#090C14] via-[#0E1322] to-[#090C14]" />
 
-      {/* 2A. Mobile Details Layout (matching reference mockup media_1790355616895.png) */}
-      <div className="md:hidden relative z-20 w-full max-w-sm mx-auto min-h-[100dvh] flex flex-col justify-between pt-16 pb-6 px-5 overflow-hidden">
+      {/* Mobile Lower Background: Full-Bleed Building Image locked to bottom edge (zero movement on scroll) */}
+      <div className="md:hidden absolute bottom-0 left-0 right-0 w-full h-[46%] z-0 pointer-events-none overflow-hidden">
+        <img
+          src="/assets/the_crown_night.jpg"
+          alt="The Crown Venue"
+          className="w-full h-full object-cover object-bottom"
+        />
+        {/* Soft top gradient blend into upper dark midnight section background */}
+        <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#090C14] via-[#090C14]/50 to-transparent" />
+        {/* Dark bottom gradient overlay for script text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+      </div>
+
+      {/* 2A. Mobile Details Layout (Starts plain with text, quote sits at lower empty space) */}
+      <div className="md:hidden relative z-10 w-full max-w-sm mx-auto min-h-[100dvh] flex flex-col justify-between pt-16 pb-6 px-5">
         
         {/* Top Header & Details List */}
         <div className="w-full flex flex-col">
@@ -146,19 +159,12 @@ export default function DetailsSection() {
           </div>
         </div>
 
-        {/* Lower Half: Full Venue Photo with Script Quote Overlaid directly at bottom */}
-        <div className="w-full rounded-2xl overflow-hidden relative shadow-2xl mt-4">
-          <img
-            src="/assets/venue_hd_full.jpg"
-            alt="Frisco Hall Event Center"
-            className="w-full h-48 xs:h-52 object-cover object-bottom"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent flex items-end justify-center pb-3 px-4">
-            <p className="font-script text-white text-[21px] xs:text-[23px] text-center leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-              Good music. Great company.<br />
-              Unforgettable moments.
-            </p>
-          </div>
+        {/* Lower Empty Space Over Background: Script Quote */}
+        <div className="w-full text-center mt-auto pt-6 pb-2 z-10">
+          <p className="font-script text-white text-[22px] xs:text-[25px] sm:text-[28px] leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+            Good music. Great company.<br />
+            Unforgettable moments.
+          </p>
         </div>
       </div>
 
