@@ -62,15 +62,21 @@ export default function Header({ activeSection, onNavigate, isAudioPlaying, onTo
             />
           </button>
 
-          {/* Mobile Center Monogram: Matches all 4 mobile reference screens */}
-          <div className="lg:hidden flex items-center">
+          {/* Mobile Spacer to balance flex layout */}
+          <div className="lg:hidden w-8 pointer-events-none" />
+
+          {/* Mobile Center Logo: Perfectly Centered on Mobile */}
+          <div className="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
             <button
               onClick={() => handleNavClick('invitation')}
-              className="flex items-center space-x-2 font-display text-xl sm:text-2xl text-[#E7CE9C] tracking-[0.25em] outline-none focus:outline-none"
+              className="outline-none focus:outline-none active:scale-95 transition-transform"
+              aria-label="S & N Home"
             >
-              <span>S</span>
-              <span className="text-[#D2A85C]/60 font-light">|</span>
-              <span>N</span>
+              <img
+                src="/assets/sn_logo.png"
+                alt="S & N Logo"
+                className="h-9 sm:h-11 w-auto object-contain drop-shadow-[0_2px_10px_rgba(210,168,92,0.5)]"
+              />
             </button>
           </div>
 

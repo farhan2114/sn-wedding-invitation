@@ -7,10 +7,17 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
       id="invitation"
       className="relative min-h-[100dvh] w-full flex items-center justify-center px-4 sm:px-8 md:px-12 py-16 overflow-hidden bg-[#12141C]"
     >
-      {/* 1. Room Background with Cinematic Push-In Transition */}
+      {/* 1. Room Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Mobile Background: using the uploaded high-res image media_1790353885532.png */}
         <div
-          className={`absolute inset-0 bg-cover bg-center sm:bg-[center_center] transition-transform duration-1000 ease-out ${
+          className="md:hidden absolute inset-0 bg-cover bg-center transition-all duration-700"
+          style={{ backgroundImage: `url('/assets/hero_mobile_bg.png')` }}
+        />
+
+        {/* Desktop Background: hall_background.jpg with Cinematic Push-In */}
+        <div
+          className={`hidden md:block absolute inset-0 bg-cover bg-center sm:bg-[center_center] transition-transform duration-1000 ease-out ${
             isTransitioning ? 'scale-115 filter brightness-105' : 'scale-100'
           }`}
           style={{ backgroundImage: `url('/assets/hall_background.jpg')` }}
@@ -20,8 +27,8 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#12141C]/60 hidden md:block" />
       </div>
 
-      {/* 2. Top Ceiling Accent: Hanging Golden Tube Pendant Lights */}
-      <div className={`absolute -top-2 left-[18%] sm:left-[20%] md:left-[22%] lg:left-[24%] z-10 pointer-events-none hidden sm:block transition-transform duration-1000 ease-out ${
+      {/* 2. Top Ceiling Accent: Hanging Golden Tube Pendant Lights (Desktop only) */}
+      <div className={`hidden md:block absolute -top-2 left-[18%] sm:left-[20%] md:left-[22%] lg:left-[24%] z-10 pointer-events-none transition-transform duration-1000 ease-out ${
         isTransitioning ? 'translate-y-2 scale-105' : 'translate-y-0'
       }`}>
         <img
@@ -31,8 +38,8 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
         />
       </div>
 
-      {/* 3. Top-Right Ceiling Accent: Large Hanging Golden Disco Ball */}
-      <div className={`absolute top-1 sm:top-3 md:top-5 right-3 sm:right-8 md:right-14 lg:right-20 z-20 pointer-events-none transition-transform duration-1000 ease-out ${
+      {/* 3. Top-Right Ceiling Accent: Large Hanging Golden Disco Ball (Desktop only) */}
+      <div className={`hidden md:block absolute top-1 sm:top-3 md:top-5 right-3 sm:right-8 md:right-14 lg:right-20 z-20 pointer-events-none transition-transform duration-1000 ease-out ${
         isTransitioning ? 'scale-110' : 'scale-100'
       }`}>
         <img
@@ -42,8 +49,8 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
         />
       </div>
 
-      {/* 4. Bottom-Right Floor Accent: Floral Candles Decor */}
-      <div className={`absolute bottom-5 sm:bottom-7 md:bottom-9 lg:bottom-12 right-2 sm:right-6 md:right-10 lg:right-14 z-20 pointer-events-none transition-transform duration-1000 ease-out ${
+      {/* 4. Bottom-Right Floor Accent: Floral Candles Decor (Desktop only) */}
+      <div className={`hidden md:block absolute bottom-5 sm:bottom-7 md:bottom-9 lg:bottom-12 right-2 sm:right-6 md:right-10 lg:right-14 z-20 pointer-events-none transition-transform duration-1000 ease-out ${
         isTransitioning ? 'scale-105' : 'scale-100'
       }`}>
         <img
@@ -54,71 +61,62 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
       </div>
 
       {/* 5. Main Hero Content Layout */}
-      {/* 5A. Mobile Layout (matching reference screenshot media_1790351842986.png) */}
-      <div className="md:hidden relative z-20 w-full min-h-[100dvh] flex flex-col justify-between items-center pt-16 pb-5 px-4 overflow-hidden">
+      {/* 5A. Mobile Layout (matching reference screenshot media_1790353791004.png) */}
+      <div className="md:hidden relative z-20 w-full h-[100dvh] flex flex-col justify-between items-center pt-16 pb-4 px-4 overflow-hidden">
         
         {/* Top Typography */}
-        <div className="flex flex-col items-center text-center mt-2 z-20">
-          <p className="text-[10px] font-sans-ui uppercase tracking-[0.28em] text-[#F3EFE4]/90 font-light leading-relaxed mb-2 drop-shadow-sm">
+        <div className="flex flex-col items-center text-center mt-1 z-20">
+          <p className="text-[10px] sm:text-[11px] font-sans-ui uppercase tracking-[0.28em] text-[#A9A6A0] font-normal leading-relaxed mb-1.5 drop-shadow-sm">
             Together<br />
             is a beautiful<br />
             place to be
           </p>
-          <h1 className="font-display text-4xl sm:text-5xl text-[#D2A85C] tracking-wide font-normal leading-[1.08] mb-2 drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
+          <h1 className="font-display text-[44px] xs:text-[48px] sm:text-5xl tracking-wide font-normal leading-[1.06] mb-2 bg-gradient-to-b from-[#FFFFFF] via-[#F4E3C5] to-[#C89B48] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
             Sangeet &amp;<br />
             Cocktails
           </h1>
-          <p className="text-[9px] font-sans-ui uppercase tracking-[0.24em] text-[#E7CE9C]/90 leading-relaxed">
+          <p className="text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.24em] text-white font-medium leading-relaxed drop-shadow-sm">
             A night of music, celebration<br />and love
           </p>
         </div>
 
-        {/* Center Grounded Couple with Circular Neon Glow & Script "Let's Celebrate" */}
-        <div className="relative flex-1 flex flex-col items-center justify-end w-full z-20 my-auto">
-          {/* Glowing Circular Ambient Arches */}
-          <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-72 sm:h-72 rounded-full border border-[#D2A85C]/40 shadow-[0_0_40px_rgba(210,168,92,0.35)] pointer-events-none" />
-
-          {/* Couple Cutout */}
-          <div className="relative flex items-end justify-center w-full">
-            <img
-              src="/assets/couple_cutout.png"
-              alt="S & N - The Couple"
-              className="h-[50vh] sm:h-[55vh] max-h-[460px] w-auto object-contain object-bottom drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)]"
-            />
-
-            {/* Glowing Script "Let's Celebrate" matching reference position at couple's waist */}
-            <button
-              onClick={onUnlockAndScroll}
-              disabled={isTransitioning}
-              className={`absolute left-2 sm:left-6 bottom-20 sm:bottom-24 font-script text-3xl sm:text-4xl text-[#E7CE9C] -rotate-12 drop-shadow-[0_0_16px_rgba(210,168,92,0.9)] hover:scale-105 active:scale-95 transition-transform cursor-pointer outline-none focus:outline-none ${
-                isTransitioning ? 'scale-110 text-white' : ''
-              }`}
-              aria-label="Let's Celebrate — Click to enter"
-            >
-              Let's<br />Celebrate
-            </button>
-          </div>
+        {/* Center: Glowing Neon "Let's Celebrate" script button at the bride's waist */}
+        <div className="relative flex-1 w-full flex items-center justify-start z-20">
+          <button
+            onClick={onUnlockAndScroll}
+            disabled={isTransitioning}
+            className={`absolute left-2 sm:left-5 top-[56%] -translate-y-1/2 font-script text-[38px] sm:text-[46px] text-[#FFF2D1] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none ${
+              isTransitioning ? 'scale-110' : ''
+            }`}
+            style={{
+              textShadow: '0 0 10px rgba(255, 235, 180, 0.95), 0 0 25px rgba(210, 168, 92, 0.9), 0 0 45px rgba(210, 168, 92, 0.75)',
+              filter: 'drop-shadow(0 0 15px rgba(210, 168, 92, 0.9))'
+            }}
+            aria-label="Let's Celebrate — Click to enter"
+          >
+            Let's<br />Celebrate
+          </button>
         </div>
 
         {/* Bottom Date, Venue & Scroll Button */}
-        <div className="flex flex-col items-center text-center z-20 w-full pb-2">
-          <p className="text-[11px] font-sans-ui uppercase tracking-[0.24em] text-[#F3EFE4] font-medium mb-1 drop-shadow-sm">
+        <div className="flex flex-col items-center text-center z-20 w-full pb-3 pt-1">
+          <p className="text-[11px] sm:text-xs font-sans-ui uppercase tracking-[0.24em] text-[#F3EFE4] font-medium mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             Saturday, November 21, 2026
           </p>
-          <p className="text-[9px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-3">
+          <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             Frisco Hall Event Center, Texas
           </p>
 
           {/* Circular Scroll Down Button */}
           <button
             onClick={onUnlockAndScroll}
-            className="flex flex-col items-center group outline-none focus:outline-none cursor-pointer"
+            className="flex flex-col items-center group outline-none focus:outline-none cursor-pointer active:scale-95 transition-transform"
             aria-label="Scroll to details"
           >
-            <div className="w-8 h-8 rounded-full border border-[#D2A85C]/60 flex items-center justify-center mb-1 group-hover:border-[#D2A85C] transition-colors">
+            <div className="w-8 h-8 rounded-full border border-[#D2A85C]/70 bg-[#12141C]/40 backdrop-blur-xs flex items-center justify-center mb-1 group-hover:border-[#D2A85C] shadow-lg transition-colors">
               <ChevronDown className="w-4 h-4 text-[#D2A85C] animate-bounce" />
             </div>
-            <span className="text-[8px] uppercase tracking-[0.25em] text-[#A9A6A0]">SCROLL</span>
+            <span className="text-[8px] uppercase tracking-[0.26em] text-[#A9A6A0]">SCROLL</span>
           </button>
         </div>
       </div>
