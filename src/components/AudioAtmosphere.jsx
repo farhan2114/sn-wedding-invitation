@@ -1,72 +1,43 @@
 import React, { useEffect, useRef } from 'react';
 
 /**
- * Atmospheric ambient audio generator using Web Audio API
- * Plays gentle, soothing warm lounge notes in pentatonic minor scale with soft reverb
+ * Background MP3 Music Player
+ * 
+ * HOW TO ADD / CHANGE YOUR MP3 IN VS CODE:
+ * 1. Copy your .mp3 file into the folder:
+ *      public/assets/
+ *    For example: public/assets/music.mp3
+ * 
+ * 2. If your file has a different name, change AUDIO_SRC below:
  */
-export default function AudioAtmosphere({ isPlaying, onToggle }) {
-  const audioCtxRef = useRef(null);
-  const isRunningRef = useRef(false);
-  const timerRef = useRef(null);
+export const AUDIO_SRC = '/assets/music.mp3';
+export const DEFAULT_VOLUME = 0.5; // 0.0 (silent) to 1.0 (loud)
+
+export default function AudioAtmosphere({ isPlaying }) {
+  const audioRef = useRef(null);
 
   useEffect(() => {
-    if (!isPlaying) {
-      if (timerRef.current) clearInterval(timerRef.current);
-      isRunningRef.current = false;
-      return;
+    // Initialize audio instance once
+    if (!audioRef.current) {
+      const audio = new Audio(AUDIO_SRC);
+      audio.loop = true;
+      audio.volume = DEFAULT_VOLUME;
+      audio.preload = 'auto';
+      audioRef.current = audio;
     }
 
-    try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!audioCtxRef.current) {
-        audioCtxRef.current = new AudioContext();
+    const audio = audioRef.current;
+
+    if (isPlaying) {
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn('Playback error (check if music.mp3 exists in public/assets):', err);
+        });
       }
-      const ctx = audioCtxRef.current;
-      if (ctx.state === 'suspended') {
-        ctx.resume();
-      }
-
-      isRunningRef.current = true;
-
-      // Pentatonic warm notes (F#, A, B, C#, E in Hz)
-      const scale = [185.0, 220.0, 246.94, 277.18, 329.63, 369.99, 440.0, 493.88];
-
-      const playWarmNote = () => {
-        if (!isRunningRef.current) return;
-        const now = ctx.currentTime;
-        const freq = scale[Math.floor(Math.random() * scale.length)];
-
-        // Sine oscillator for pure warm tone
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now);
-
-        // Gentle envelope: soft attack, long dreamy decay
-        gain.gain.setValueAtTime(0, now);
-        gain.gain.linearRampToValueAtTime(0.04, now + 1.2);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 4.5);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start(now);
-        osc.stop(now + 4.5);
-      };
-
-      // Play an initial note, then periodic random lounge notes
-      playWarmNote();
-      timerRef.current = setInterval(() => {
-        playWarmNote();
-      }, 3200);
-    } catch (err) {
-      console.warn('Web Audio not allowed or supported:', err);
+    } else {
+      audio.pause();
     }
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
   }, [isPlaying]);
 
   return null;
