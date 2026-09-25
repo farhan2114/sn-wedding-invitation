@@ -62,26 +62,26 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
 
       {/* 5. Main Hero Content Layout */}
       {/* 5A. Mobile Layout (matching reference screenshot media_1790353791004.png) */}
-      <div className="md:hidden relative z-20 w-full h-[100dvh] flex flex-col justify-between items-center pt-14 pb-5 px-4 overflow-hidden">
+      <div className="md:hidden relative z-20 w-full h-[100dvh] flex flex-col justify-between items-center pt-7 xs:pt-8 pb-9 xs:pb-11 px-4 overflow-hidden">
         
-        {/* Top Typography & Logo */}
-        <div className="flex flex-col items-center text-center mt-1 z-20">
+        {/* Top Typography & Logo (Shifted higher up into dark ambient space) */}
+        <div className="flex flex-col items-center text-center mt-0.5 z-20">
           {/* Logo brought down from navbar right above Together lines */}
-          <div className="flex justify-center items-center mb-2.5">
+          <div className="flex justify-center items-center mb-1.5">
             <img
               src="/assets/sn_logo.png"
               alt="S & N Logo"
-              className="h-12 sm:h-14 w-auto object-contain drop-shadow-[0_4px_16px_rgba(210,168,92,0.65)] filter brightness-105"
+              className="h-11 xs:h-12 sm:h-14 w-auto object-contain drop-shadow-[0_4px_16px_rgba(210,168,92,0.65)] filter brightness-105"
             />
           </div>
 
-          <p className="text-[10px] sm:text-[11px] font-sans-ui uppercase tracking-[0.28em] text-[#A9A6A0] font-normal leading-relaxed mb-1.5 drop-shadow-sm">
+          <p className="text-[9.5px] xs:text-[10px] sm:text-[11px] font-sans-ui uppercase tracking-[0.28em] text-[#A9A6A0] font-normal leading-relaxed mb-1 drop-shadow-sm">
             Together<br />
             is a beautiful<br />
             place to be
           </p>
           <h1
-            className="font-display text-[46px] xs:text-[50px] sm:text-[54px] tracking-wide font-normal leading-[1.05] mb-2"
+            className="font-display text-[44px] xs:text-[48px] sm:text-[54px] tracking-wide font-normal leading-[1.05] mb-1.5"
             style={{
               background: 'linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 60%, #F8ECD2 80%, #DFC07A 100%)',
               WebkitBackgroundClip: 'text',
@@ -93,12 +93,12 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
             Sangeet &amp;<br />
             Cocktails
           </h1>
-          <p className="text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.24em] text-white font-medium leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+          <p className="text-[9px] xs:text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.24em] text-white font-medium leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
             A night of music, celebration<br />and love
           </p>
         </div>
 
-        {/* Center: Glowing Neon "Let's Celebrate" script button lowered towards bride's waist */}
+        {/* Center: Glowing Neon "Let's Celebrate" script button (position preserved at top-[65%]) */}
         <div className="relative flex-1 w-full flex items-center justify-start z-20">
           <button
             onClick={onUnlockAndScroll}
@@ -116,19 +116,19 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
           </button>
         </div>
 
-        {/* Bottom Date, Venue & Explicit "Click Let's Celebrate" Prompt */}
-        <div className="flex flex-col items-center text-center z-20 w-full pb-5 pt-1">
+        {/* Bottom Date, Venue & Explicit "Click Let's Celebrate" Prompt (Shifted higher up) */}
+        <div className="flex flex-col items-center text-center z-20 w-full mb-1">
           <p className="text-[11px] sm:text-xs font-sans-ui uppercase tracking-[0.24em] text-[#F3EFE4] font-medium mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             Saturday, November 21, 2026
           </p>
-          <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-3.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+          <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             Frisco Hall Event Center, Texas
           </p>
 
           {/* Click "Let's Celebrate" Prompt */}
           <button
             onClick={onUnlockAndScroll}
-            className="flex items-center space-x-2 text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.24em] text-[#E7CE9C] hover:text-white transition-colors cursor-pointer outline-none focus:outline-none py-1.5 px-4 rounded-full border border-[#D2A85C]/40 bg-[#12141C]/65 backdrop-blur-xs animate-pulse active:scale-95"
+            className="flex items-center space-x-2 text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.24em] text-[#E7CE9C] hover:text-white transition-colors cursor-pointer outline-none focus:outline-none py-1.5 px-4 rounded-full border border-[#D2A85C]/40 bg-[#12141C]/75 backdrop-blur-xs animate-pulse active:scale-95 shadow-lg"
             aria-label="Click Let's Celebrate to Enter"
           >
             <Sparkles className="w-3 h-3 text-[#D2A85C]" />
