@@ -65,20 +65,18 @@ export default function Header({ activeSection, onNavigate, isAudioPlaying, onTo
           {/* Mobile Spacer to balance flex layout */}
           <div className="lg:hidden w-8 pointer-events-none" />
 
-          {/* Mobile Center Logo: Fades in smoothly when scrolled past top */}
+          {/* Mobile Center Monogram: Centered S | N matching reference mockup */}
           <div className={`lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center transition-opacity duration-300 ${
             isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}>
             <button
               onClick={() => handleNavClick('invitation')}
-              className="outline-none focus:outline-none active:scale-95 transition-transform"
+              className="flex items-center space-x-2 font-display text-xl sm:text-2xl text-[#E7CE9C] tracking-[0.25em] outline-none focus:outline-none active:scale-95 transition-transform"
               aria-label="S & N Home"
             >
-              <img
-                src="/assets/sn_logo.png"
-                alt="S & N Logo"
-                className="h-8 sm:h-9 w-auto object-contain drop-shadow-[0_2px_10px_rgba(210,168,92,0.5)]"
-              />
+              <span>S</span>
+              <span className="text-[#D2A85C]/70 font-light">|</span>
+              <span>N</span>
             </button>
           </div>
 

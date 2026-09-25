@@ -17,8 +17,8 @@ export default function DetailsSection() {
       id="details"
       className="relative min-h-[100dvh] w-full flex items-center justify-center px-4 sm:px-8 py-20 overflow-hidden bg-[#12141C]"
     >
-      {/* 1. Full-Bleed Frisco Hall Event Center Background (HD Twilight Photo) */}
-      <div className="absolute inset-0 z-0">
+      {/* 1. Full-Bleed Frisco Hall Event Center Background (HD Twilight Photo - Desktop only) */}
+      <div className="hidden md:block absolute inset-0 z-0">
         <div
           className="absolute inset-0 bg-cover bg-center sm:bg-[center_top_30%]"
           style={{ backgroundImage: `url('/assets/venue_hd_full.jpg')` }}
@@ -28,86 +28,80 @@ export default function DetailsSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#12141C] via-transparent to-[#12141C]/80" />
       </div>
 
-      {/* 2A. Mobile Details Layout (matching media_1790351853647.png) */}
-      <div className="md:hidden relative z-20 w-full min-h-[100dvh] flex flex-col justify-between pt-16 pb-6 px-5 overflow-hidden">
+      {/* Mobile Ambient Background: Deep luxury midnight navy gradient matching reference */}
+      <div className="md:hidden absolute inset-0 z-0 bg-gradient-to-b from-[#090C14] via-[#0E1322] to-[#0A0D16]" />
+
+      {/* 2A. Mobile Details Layout (matching reference mockup media_1790355616895.png) */}
+      <div className="md:hidden relative z-20 w-full max-w-sm mx-auto min-h-[100dvh] flex flex-col justify-between pt-16 pb-6 px-5 overflow-hidden">
         
         {/* Top Header & Details List */}
-        <div className="w-full max-w-sm mx-auto flex flex-col">
+        <div className="w-full flex flex-col">
           {/* Header */}
-          <div className="text-center mb-6 pt-2">
-            <h2 className="font-display text-4xl text-[#E7CE9C] font-normal tracking-wide mb-1.5 drop-shadow-md">
+          <div className="text-center mb-6 pt-1">
+            <h2
+              className="font-display text-[38px] xs:text-[42px] font-normal tracking-wide mb-1 leading-tight drop-shadow-md"
+              style={{
+                background: 'linear-gradient(180deg, #FFFFFF 0%, #F5E5C9 50%, #DFC07A 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                display: 'inline-block'
+              }}
+            >
               The Details
             </h2>
-            <p className="text-[10px] font-sans-ui uppercase tracking-[0.26em] text-[#A9A6A0]">
+            <p className="text-[10.5px] font-sans-ui uppercase tracking-[0.28em] text-[#E5E2DC] font-normal">
               All you need to know
             </p>
           </div>
 
-          {/* 4 Detail Rows */}
-          <div className="flex flex-col space-y-3.5 mb-6 text-left">
+          {/* 4 Detail Rows with Bare Gold Icons (matching reference) */}
+          <div className="flex flex-col space-y-4 mb-6 text-left">
             {/* 1. Date */}
-            <div className="flex items-start space-x-3.5">
-              <div className="w-9 h-9 rounded-full bg-[#1B1F2B] border border-[#333A4D] flex items-center justify-center shrink-0">
-                <Calendar className="w-4 h-4 text-[#D2A85C]" />
-              </div>
-              <div className="pt-0.5">
-                <p className="text-sm font-medium text-[#F3EFE4]">Saturday</p>
-                <p className="text-xs text-[#A9A6A0]">November 21, 2026</p>
+            <div className="flex items-start space-x-4">
+              <Calendar className="w-6 h-6 text-[#DFC07A] shrink-0 mt-0.5" strokeWidth={1.8} />
+              <div>
+                <p className="text-[15px] font-medium text-[#F3EFE4] leading-snug">Saturday</p>
+                <p className="text-[13px] text-[#A9A6A0] leading-snug mt-0.5">November 21, 2026</p>
               </div>
             </div>
 
             {/* 2. Time */}
-            <div className="flex items-start space-x-3.5">
-              <div className="w-9 h-9 rounded-full bg-[#1B1F2B] border border-[#333A4D] flex items-center justify-center shrink-0">
-                <Clock className="w-4 h-4 text-[#D2A85C]" />
-              </div>
-              <div className="pt-1.5">
-                <p className="text-sm font-medium text-[#F3EFE4]">7:00 PM Onwards</p>
-              </div>
+            <div className="flex items-center space-x-4">
+              <Clock className="w-6 h-6 text-[#DFC07A] shrink-0" strokeWidth={1.8} />
+              <p className="text-[15px] font-medium text-[#F3EFE4] leading-snug">7:00 PM Onwards</p>
             </div>
 
             {/* 3. Venue */}
-            <div className="flex items-start space-x-3.5">
-              <div className="w-9 h-9 rounded-full bg-[#1B1F2B] border border-[#333A4D] flex items-center justify-center shrink-0">
-                <MapPin className="w-4 h-4 text-[#D2A85C]" />
-              </div>
-              <div className="pt-0.5">
-                <p className="text-sm font-medium text-[#F3EFE4]">Frisco Hall Event Center,</p>
-                <p className="text-xs text-[#A9A6A0]">Texas, U.S.A</p>
+            <div className="flex items-start space-x-4">
+              <MapPin className="w-6 h-6 text-[#DFC07A] fill-[#DFC07A] shrink-0 mt-0.5" />
+              <div>
+                <p className="text-[15px] font-medium text-[#F3EFE4] leading-snug">Frisco Hall Event Center,</p>
+                <p className="text-[13px] text-[#A9A6A0] leading-snug mt-0.5">Texas, U.S.A</p>
               </div>
             </div>
 
             {/* 4. Attire */}
-            <div className="flex items-start space-x-3.5">
-              <div className="w-9 h-9 rounded-full bg-[#1B1F2B] border border-[#333A4D] flex items-center justify-center shrink-0">
-                <svg
-                  className="w-4 h-4 text-[#D2A85C]"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 2a3 3 0 0 0-3 3c0 .8.3 1.5.8 2.1L2 14v1a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-1l-7.8-6.9c.5-.6.8-1.3.8-2.1a3 3 0 0 0-3-3z" />
-                  <path d="M6 16l2 6h8l2-6" />
-                </svg>
-              </div>
-              <div className="pt-1.5">
-                <p className="text-sm font-medium text-[#F3EFE4]">Indo-Western or Cocktail Attire</p>
-              </div>
+            <div className="flex items-center space-x-4">
+              <svg
+                className="w-6 h-6 text-[#DFC07A] shrink-0 fill-current"
+                viewBox="0 0 24 24"
+              >
+                <path d="M9 2.5 L10.5 2.5 L11.2 6.5 L12 3 L12.8 6.5 L13.5 2.5 L15 2.5 L14.2 8.5 L9.8 8.5 Z" />
+                <path d="M9.6 9.5 L14.4 9.5 L17.2 21.5 L14 21.5 L12.5 13 L12 13 L11.5 13 L10 21.5 L6.8 21.5 Z" />
+              </svg>
+              <p className="text-[15px] font-medium text-[#F3EFE4] leading-snug">Indo-Western or Cocktail Attire</p>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col space-y-3 mb-6">
+          <div className="flex flex-col space-y-3 mb-4">
             {/* Primary Button: Add to Calendar */}
             <div className="relative">
               <button
                 onClick={() => setShowCalendarOptions(!showCalendarOptions)}
-                className="w-full bg-[#E2C17D] hover:bg-[#E7CE9C] text-[#12141C] font-sans-ui text-sm font-semibold tracking-wider py-3.5 px-6 rounded-full flex items-center justify-center space-x-2.5 transition-all shadow-md active-press"
+                className="w-full bg-[#ECC68F] hover:bg-[#F3D4A3] text-[#12141C] font-sans-ui text-[14px] font-semibold tracking-wider py-3.5 px-6 rounded-full flex items-center justify-center space-x-2.5 transition-all shadow-lg active:scale-95 cursor-pointer"
               >
-                <Calendar className="w-4 h-4 text-[#12141C]" />
+                <Calendar className="w-4 h-4 text-[#12141C]" strokeWidth={2.2} />
                 <span>{downloadSuccess ? 'Calendar Saved!' : 'Add to Calendar'}</span>
               </button>
 
@@ -144,31 +138,27 @@ export default function DetailsSection() {
               href={EVENT_DETAILS.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-transparent border border-[#D2A85C]/70 text-[#E7CE9C] font-sans-ui text-sm font-medium tracking-wider py-3.5 px-6 rounded-full flex items-center justify-center space-x-2.5 transition-all active-press"
+              className="w-full bg-[#0E1119]/80 border border-[#ECC68F]/90 hover:border-[#ECC68F] text-[#F3EFE4] hover:text-[#ECC68F] font-sans-ui text-[14px] font-medium tracking-wider py-3.5 px-6 rounded-full flex items-center justify-center space-x-2.5 transition-all shadow-md active:scale-95 cursor-pointer"
             >
-              <MapPin className="w-4 h-4 text-[#D2A85C]" />
+              <MapPin className="w-4 h-4 text-[#ECC68F] fill-[#ECC68F]" />
               <span>View on Maps</span>
             </a>
           </div>
         </div>
 
-        {/* Lower Half: Venue Photo & Script Quote matching reference */}
-        <div className="w-full max-w-sm mx-auto flex flex-col items-center mt-auto">
-          {/* Framed Frisco Hall Exterior Photo */}
-          <div className="w-full h-44 rounded-2xl overflow-hidden relative shadow-2xl border border-[#D2A85C]/30 mb-4">
-            <img
-              src="/assets/venue_hd_full.jpg"
-              alt="Frisco Hall Event Center"
-              className="w-full h-full object-cover object-bottom"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#12141C] via-transparent to-transparent opacity-80" />
+        {/* Lower Half: Full Venue Photo with Script Quote Overlaid directly at bottom */}
+        <div className="w-full rounded-2xl overflow-hidden relative shadow-2xl mt-4">
+          <img
+            src="/assets/venue_hd_full.jpg"
+            alt="Frisco Hall Event Center"
+            className="w-full h-48 xs:h-52 object-cover object-bottom"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent flex items-end justify-center pb-3 px-4">
+            <p className="font-script text-white text-[21px] xs:text-[23px] text-center leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+              Good music. Great company.<br />
+              Unforgettable moments.
+            </p>
           </div>
-
-          {/* Script Tagline */}
-          <p className="font-script text-[#E7CE9C] text-2xl text-center leading-relaxed drop-shadow-md">
-            Good music. Great company.<br />
-            Unforgettable moments.
-          </p>
         </div>
       </div>
 
