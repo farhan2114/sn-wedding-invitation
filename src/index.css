@@ -24,6 +24,29 @@
   --text-muted: #A9A6A0;
 }
 
+/* App-like feel: Prevent I-beam text selection cursor across presentation content */
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, div, section, blockquote, label {
+  cursor: default;
+}
+
+/* Preserve proper text cursor for inputs and textareas */
+input, textarea {
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+
+/* Interactive elements get pointer hand cursor */
+button, a, [role="button"] {
+  cursor: pointer;
+}
+
 @font-face {
   font-family: 'Brittany Signature';
   font-style: normal;
