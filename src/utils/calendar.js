@@ -5,12 +5,12 @@
 export const EVENT_DETAILS = {
   title: 'Sangeet & Cocktails — S | N',
   description: 'Join S & N for a night of music, celebration and love! Dress code: Indo-Western or Cocktail Attire.',
-  location: 'Frisco Hall Event Center, Texas, U.S.A',
-  mapsUrl: 'https://maps.google.com/?q=Frisco+Hall+Event+Center,+Texas',
-  startDate: '20261121T190000',
-  endDate: '20261122T010000',
-  readableDate: 'Saturday, November 21, 2026',
-  readableTime: '7:00 PM Onwards'
+  location: 'The Crown Venue, 10841 Composite Dr, Dallas, TX 75220',
+  mapsUrl: 'https://maps.google.com/?q=The+Crown+Venue,+10841+Composite+Dr,+Dallas,+TX+75220',
+  startDate: '20261120T180000',
+  endDate: '20261121T000000',
+  readableDate: 'Friday, November 20, 2026',
+  readableTime: '6:00 PM Onwards'
 };
 
 export function downloadIcsFile() {
@@ -24,8 +24,8 @@ export function downloadIcsFile() {
     'SUMMARY:' + EVENT_DETAILS.title,
     'DESCRIPTION:' + EVENT_DETAILS.description,
     'LOCATION:' + EVENT_DETAILS.location,
-    'DTSTART:20261121T190000',
-    'DTEND:20261122T010000',
+    'DTSTART:20261120T180000',
+    'DTEND:20261121T000000',
     'STATUS:CONFIRMED',
     'SEQUENCE:0',
     'BEGIN:VALARM',
@@ -51,7 +51,7 @@ export function downloadIcsFile() {
 export function getGoogleCalendarUrl() {
   const base = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
   const text = encodeURIComponent(EVENT_DETAILS.title);
-  const dates = '20261121T190000/20261122T010000';
+  const dates = '20261120T180000/20261121T000000';
   const details = encodeURIComponent(EVENT_DETAILS.description);
   const location = encodeURIComponent(EVENT_DETAILS.location);
 

@@ -73,23 +73,23 @@ export default function DetailsSection() {
             <div className="flex items-start space-x-3.5">
               <Calendar className="w-5 h-5 text-[#DFC07A] shrink-0 mt-0.5" strokeWidth={1.8} />
               <div>
-                <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">Saturday</p>
-                <p className="text-[12.5px] text-[#A9A6A0] leading-snug mt-0.5">November 21, 2026</p>
+                <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">Friday</p>
+                <p className="text-[12.5px] text-[#A9A6A0] leading-snug mt-0.5">November 20, 2026</p>
               </div>
             </div>
 
             {/* 2. Time */}
             <div className="flex items-center space-x-3.5">
               <Clock className="w-5 h-5 text-[#DFC07A] shrink-0" strokeWidth={1.8} />
-              <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">7:00 PM Onwards</p>
+              <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">6:00 PM Onwards</p>
             </div>
 
             {/* 3. Venue */}
             <div className="flex items-start space-x-3.5">
               <MapPin className="w-5 h-5 text-[#DFC07A] fill-[#DFC07A] shrink-0 mt-0.5" />
               <div>
-                <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">Frisco Hall Event Center,</p>
-                <p className="text-[12.5px] text-[#A9A6A0] leading-snug mt-0.5">Texas, U.S.A</p>
+                <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">The Crown Venue,</p>
+                <p className="text-[12.5px] text-[#A9A6A0] leading-snug mt-0.5">10841 Composite Dr, Dallas, TX 75220</p>
               </div>
             </div>
 
@@ -195,8 +195,8 @@ export default function DetailsSection() {
                 <Calendar className="w-5 h-5 text-[#D2A85C]" />
               </div>
               <div className="pt-0.5">
-                <p className="text-sm font-medium text-[#F3EFE4]">Saturday</p>
-                <p className="text-xs text-[#A9A6A0] tracking-wide">November 21, 2026</p>
+                <p className="text-sm font-medium text-[#F3EFE4]">Friday</p>
+                <p className="text-xs text-[#A9A6A0] tracking-wide">November 20, 2026</p>
               </div>
             </div>
 
@@ -206,7 +206,7 @@ export default function DetailsSection() {
                 <Clock className="w-5 h-5 text-[#D2A85C]" />
               </div>
               <div className="pt-2">
-                <p className="text-sm font-medium text-[#F3EFE4]">7:00 PM Onwards</p>
+                <p className="text-sm font-medium text-[#F3EFE4]">6:00 PM Onwards</p>
               </div>
             </div>
 
@@ -216,8 +216,8 @@ export default function DetailsSection() {
                 <MapPin className="w-5 h-5 text-[#D2A85C]" />
               </div>
               <div className="pt-0.5">
-                <p className="text-sm font-medium text-[#F3EFE4]">Frisco Hall Event Center,</p>
-                <p className="text-xs text-[#A9A6A0] tracking-wide">Texas, U.S.A</p>
+                <p className="text-sm font-medium text-[#F3EFE4]">The Crown Venue,</p>
+                <p className="text-xs text-[#A9A6A0] tracking-wide">10841 Composite Dr, Dallas, TX 75220</p>
               </div>
             </div>
 

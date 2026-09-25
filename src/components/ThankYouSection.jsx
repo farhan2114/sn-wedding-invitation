@@ -8,10 +8,19 @@ export default function ThankYouSection({ rsvpSubmission }) {
       id="thank-you"
       className="relative min-h-screen w-full flex flex-col justify-between items-center text-center px-5 sm:px-8 pt-16 md:pt-20 pb-8 md:pb-10 overflow-hidden bg-[#12141C]"
     >
-      {/* Full-Bleed Luxury Cocktail Lounge Background (Using uploaded thank_you_bg.jpg) */}
+      {/* Full-Bleed Luxury Cocktail Lounge Background */}
       <div className="absolute inset-0 z-0">
+        {/* Mobile Background: New Disco & Cocktail Lounge Image */}
         <div
-          className="absolute inset-0 bg-cover bg-[72%_center] sm:bg-center transition-all duration-700"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-700 md:hidden"
+          style={{ backgroundImage: `url('/assets/thank_you_mobile.png')` }}
+        />
+        {/* Mobile Scrim for text readability */}
+        <div className="absolute inset-0 bg-[#12141C]/30 md:hidden pointer-events-none" />
+
+        {/* Desktop Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-[72%_center] sm:bg-center transition-all duration-700 hidden md:block"
           style={{ backgroundImage: `url('/assets/thank_you_bg.jpg')` }}
         />
         {/* Subtle top and bottom edge gradients for smooth section continuity */}

@@ -114,10 +114,10 @@ export default function HeroSection({ onScrollDown }) {
         {/* Bottom Date, Venue & Direct "Scroll Down" Indicator */}
         <div className="flex flex-col items-center text-center z-20 w-full mb-3 xs:mb-4">
           <p className="text-[11px] sm:text-xs font-sans-ui uppercase tracking-[0.24em] text-[#F3EFE4] font-medium mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-            Saturday, November 21, 2026
+            Friday, November 20, 2026
           </p>
           <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-            Frisco Hall Event Center, Texas
+            The Crown Venue, Dallas, TX
           </p>
 
           {/* Direct Scroll Down Prompt */}
@@ -185,10 +185,10 @@ export default function HeroSection({ onScrollDown }) {
               {/* Date & Venue Box */}
               <div className="py-3 px-5 rounded-2xl bg-[#0A0C12]/65 border border-[#D2A85C]/35 mb-5 space-y-1 backdrop-blur-xs w-full max-w-[300px]">
                 <p className="text-[12px] sm:text-[13px] font-sans-ui uppercase tracking-[0.24em] text-[#F3EFE4] font-medium">
-                  Saturday, November 21, 2026
+                  Friday, November 20, 2026
                 </p>
                 <p className="text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0]">
-                  Frisco Hall Event Center, Texas
+                  The Crown Venue, Dallas, TX
                 </p>
               </div>
 

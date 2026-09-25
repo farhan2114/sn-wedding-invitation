@@ -188,7 +188,7 @@ export default function Header({ activeSection, onNavigate, isAudioPlaying, onTo
           <div className="pt-6 border-t border-[#333A4D]/40 text-center">
             <p className="font-script text-[#D2A85C] text-3xl mb-1">Let's Celebrate</p>
             <p className="text-[10px] tracking-[0.22em] uppercase text-[#A9A6A0]">
-              November 21, 2026 • Frisco, TX
+              November 20, 2026 • Dallas, TX
             </p>
           </div>
         </div>
