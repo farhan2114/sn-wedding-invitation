@@ -11,28 +11,9 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('invitation');
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [rsvpSubmission, setRsvpSubmission] = useState(null);
-  
-  // Page is locked to Hero until "Let's Celebrate" is clicked
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  // Prevent scroll when locked
-  useEffect(() => {
-    if (!isUnlocked) {
-      document.body.style.overflow = 'hidden';
-      window.scrollTo(0, 0);
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isUnlocked]);
 
   // Scroll listener to update active header indicator
   useEffect(() => {
-    if (!isUnlocked) return;
-
     const handleScroll = () => {
       const sections = ['invitation', 'details', 'rsvp', 'thank-you'];
       const scrollPos = window.scrollY + 220;
@@ -52,39 +33,20 @@ export default function App() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isUnlocked]);
+  }, []);
 
   const scrollToSection = (id) => {
-    if (!isUnlocked) {
-      handleUnlockAndScroll();
-      return;
-    }
-
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const handleUnlockAndScroll = () => {
-    if (isTransitioning) return;
-
-    // 1. Start smooth transition state
-    setIsTransitioning(true);
-
-    // 2. Unlock the page
-    setIsUnlocked(true);
-
-    // 4. Smooth scroll down to details
-    setTimeout(() => {
-      const detailsEl = document.getElementById('details');
-      if (detailsEl) {
-        detailsEl.scrollIntoView({ behavior: 'smooth' });
-      }
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 700);
-    }, 400);
+  const handleScrollToDetails = () => {
+    const el = document.getElementById('details');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleRsvpSubmitted = (data) => {
@@ -95,7 +57,7 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen bg-[#12141C] text-[#F3EFE4] relative font-sans-ui selection:bg-[#D2A85C]/30 selection:text-[#E7CE9C] ${!isUnlocked ? 'h-[100dvh] overflow-hidden' : ''}`}>
+    <div className="min-h-screen bg-[#12141C] text-[#F3EFE4] relative font-sans-ui selection:bg-[#D2A85C]/30 selection:text-[#E7CE9C]">
       {/* Subtle Golden Bokeh Particles */}
       <AmbientParticles />
 
@@ -105,11 +67,6 @@ export default function App() {
         onToggle={() => setIsAudioPlaying(!isAudioPlaying)}
       />
 
-      {/* Subtle Golden Ambient Light Wave Transition (NO floating text overlay) */}
-      {isTransitioning && (
-        <div className="fixed inset-0 z-40 pointer-events-none transition-opacity duration-700 ease-out bg-radial from-[#D2A85C]/20 via-[#D2A85C]/5 to-transparent blur-2xl" />
-      )}
-
       {/* Sticky Top Header */}
       <Header
         activeSection={activeSection}
@@ -118,32 +75,19 @@ export default function App() {
         onToggleAudio={() => setIsAudioPlaying(!isAudioPlaying)}
       />
 
-      {/* Main Flow: Hero Page opens immediately */}
+      {/* Main Flow: Seamless single-page scrolling */}
       <main className="relative z-10 w-full">
         {/* Section 1: Hero / Invitation */}
-        <HeroSection
-          isUnlocked={isUnlocked}
-          isTransitioning={isTransitioning}
-          onUnlockAndScroll={handleUnlockAndScroll}
-        />
+        <HeroSection onScrollDown={handleScrollToDetails} />
 
-        {/* Sections 2, 3, and 4 (Revealed upon clicking "Let's Celebrate" with smooth sliding fade) */}
-        <div
-          className={`transition-all duration-1000 ease-out transform ${
-            isUnlocked
-              ? 'opacity-100 translate-y-0 max-h-[10000px] pointer-events-auto'
-              : 'opacity-0 translate-y-12 max-h-0 overflow-hidden pointer-events-none'
-          }`}
-        >
-          {/* Section 2: The Details */}
-          <DetailsSection isUnlocked={isUnlocked} />
+        {/* Section 2: The Details */}
+        <DetailsSection />
 
-          {/* Section 3: RSVP */}
-          <RsvpSection onRsvpSubmitted={handleRsvpSubmitted} />
+        {/* Section 3: RSVP */}
+        <RsvpSection onRsvpSubmitted={handleRsvpSubmitted} />
 
-          {/* Section 4: Thank You & Confirmation */}
-          <ThankYouSection rsvpSubmission={rsvpSubmission} />
-        </div>
+        {/* Section 4: Thank You & Confirmation */}
+        <ThankYouSection rsvpSubmission={rsvpSubmission} />
       </main>
     </div>
   );

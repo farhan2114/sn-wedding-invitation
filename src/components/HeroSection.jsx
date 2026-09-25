@@ -1,7 +1,15 @@
 import React from 'react';
 import { ChevronDown, Sparkles } from 'lucide-react';
 
-export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndScroll }) {
+export default function HeroSection({ onScrollDown }) {
+  const handleScroll = () => {
+    if (onScrollDown) {
+      onScrollDown();
+    } else {
+      const el = document.getElementById('details');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section
       id="invitation"
@@ -98,40 +106,38 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
           </p>
         </div>
 
-        {/* Center: Glowing Neon "Let's Celebrate" script button (position locked at top-[65%]) */}
+        {/* Center: Glowing Neon "Let's Celebrate" script text (click to scroll down) */}
         <button
-          onClick={onUnlockAndScroll}
-          disabled={isTransitioning}
-          className={`absolute left-3 sm:left-6 top-[65%] -translate-y-1/2 z-30 font-script text-[40px] sm:text-[48px] text-[#FFF4D6] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none ${
-            isTransitioning ? 'scale-110' : ''
-          }`}
+          onClick={handleScroll}
+          className="absolute left-3 sm:left-6 top-[65%] -translate-y-1/2 z-30 font-script text-[40px] sm:text-[48px] text-[#FFF4D6] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none"
           style={{
             textShadow: '0 0 10px rgba(255, 235, 180, 0.95), 0 0 25px rgba(210, 168, 92, 0.9), 0 0 45px rgba(210, 168, 92, 0.75)',
             filter: 'drop-shadow(0 0 15px rgba(210, 168, 92, 0.9))'
           }}
-          aria-label="Let's Celebrate — Click to enter"
+          aria-label="Let's Celebrate — Scroll down"
         >
           Let's<br />Celebrate
         </button>
 
-        {/* Bottom Date, Venue & Explicit "Click Let's Celebrate" Prompt (Lifted up to clear mobile home bars) */}
+        {/* Bottom Date, Venue & Direct "Scroll Down" Indicator */}
         <div className="flex flex-col items-center text-center z-20 w-full mb-3 xs:mb-4">
           <p className="text-[11px] sm:text-xs font-sans-ui uppercase tracking-[0.24em] text-[#F3EFE4] font-medium mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             Saturday, November 21, 2026
           </p>
-          <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-2.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+          <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             Frisco Hall Event Center, Texas
           </p>
 
-          {/* Click "Let's Celebrate" Prompt */}
+          {/* Direct Scroll Down Prompt */}
           <button
-            onClick={onUnlockAndScroll}
-            className="flex items-center space-x-2 text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.24em] text-[#E7CE9C] hover:text-white transition-colors cursor-pointer outline-none focus:outline-none py-1.5 px-4 rounded-full border border-[#D2A85C]/40 bg-[#12141C]/80 backdrop-blur-xs animate-pulse active:scale-95 shadow-lg"
-            aria-label="Click Let's Celebrate to Enter"
+            onClick={handleScroll}
+            className="flex flex-col items-center space-y-1 text-[#E7CE9C] hover:text-white transition-colors cursor-pointer outline-none focus:outline-none select-none active:scale-95"
+            aria-label="Scroll Down to Details"
           >
-            <Sparkles className="w-3 h-3 text-[#D2A85C]" />
-            <span>Click "Let's Celebrate" to Enter</span>
-            <Sparkles className="w-3 h-3 text-[#D2A85C]" />
+            <span className="text-[9.5px] uppercase tracking-[0.28em] text-[#D2A85C] font-sans-ui">
+              Scroll Down
+            </span>
+            <ChevronDown className="w-4 h-4 text-[#D2A85C] animate-bounce" />
           </button>
         </div>
       </div>
@@ -207,49 +213,29 @@ export default function HeroSection({ isUnlocked, isTransitioning, onUnlockAndSc
                 />
               </div>
 
-              {/* Interactive "Let's Celebrate" Text Button */}
-              <div className="pt-0 flex flex-col items-center">
-                {/* User Instruction Prompt */}
-                <div className="mb-1.5 flex items-center space-x-1.5 text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.24em] text-[#D2A85C] animate-pulse">
-                  <Sparkles className="w-3 h-3 text-[#D2A85C]" />
-                  <span>
-                    {isUnlocked ? 'Explore Invitation' : 'Click below to enter'}
-                  </span>
-                  <Sparkles className="w-3 h-3 text-[#D2A85C]" />
-                </div>
-
-                {/* Pure script text acting directly as the clickable button */}
+              {/* Interactive "Let's Celebrate" & Direct Scroll Down */}
+              <div className="pt-1 flex flex-col items-center">
+                {/* Pure script text */}
                 <button
-                  onClick={onUnlockAndScroll}
-                  disabled={isTransitioning}
-                  className={`font-script text-[#E7CE9C] hover:text-[#FFFFFF] text-5xl sm:text-6xl md:text-[72px] leading-tight transition-all duration-300 transform active:scale-95 cursor-pointer focus:outline-none drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)] ${
-                    isTransitioning ? 'scale-105 text-white' : 'hover:scale-105'
-                  }`}
-                  aria-label="Let's Celebrate — Click to open website"
+                  onClick={handleScroll}
+                  className="font-script text-[#E7CE9C] hover:text-[#FFFFFF] text-5xl sm:text-6xl md:text-[72px] leading-tight transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer focus:outline-none drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)]"
+                  aria-label="Let's Celebrate — Scroll down"
                 >
                   Let's Celebrate
                 </button>
 
-                {/* Clarifying hint */}
-                <p className="mt-2 text-[9px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0]">
-                  {isUnlocked
-                    ? 'Website unlocked • Scroll to explore details'
-                    : 'Click "Let\'s Celebrate" to reveal details & RSVP'}
-                </p>
-              </div>
-
-              {/* Downward indicator if unlocked */}
-              {isUnlocked && (
-                <div className="mt-4 pt-2.5 border-t border-white/10 flex justify-center w-full">
+                {/* Direct Scroll Down indicator */}
+                <div className="mt-4 pt-2 flex justify-center w-full">
                   <button
-                    onClick={onUnlockAndScroll}
-                    className="flex items-center space-x-1.5 text-[9.5px] uppercase tracking-[0.25em] text-[#A9A6A0] hover:text-[#D2A85C] transition-colors"
+                    onClick={handleScroll}
+                    className="flex items-center space-x-2 text-[10px] uppercase tracking-[0.28em] text-[#A9A6A0] hover:text-[#D2A85C] transition-colors cursor-pointer group"
+                    aria-label="Scroll to Details"
                   >
-                    <ChevronDown className="w-3.5 h-3.5 animate-bounce text-[#D2A85C]" />
+                    <ChevronDown className="w-4 h-4 animate-bounce text-[#D2A85C] group-hover:translate-y-0.5 transition-transform" />
                     <span>Scroll to Details</span>
                   </button>
                 </div>
-              )}
+              </div>
 
             </div>
           </div>

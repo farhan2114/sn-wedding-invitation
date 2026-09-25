@@ -31,28 +31,28 @@ export default function DetailsSection() {
       {/* Mobile Ambient Background: Deep luxury midnight navy gradient */}
       <div className="md:hidden absolute inset-0 z-0 bg-gradient-to-b from-[#090C14] via-[#0E1322] to-[#090C14]" />
 
-      {/* Mobile Lower Background: Full-Bleed Building Image locked to bottom edge (zero movement on scroll) */}
-      <div className="md:hidden absolute bottom-0 left-0 right-0 w-full h-[46%] z-0 pointer-events-none overflow-hidden">
+      {/* Mobile Lower Background: Full-Bleed Building Image shifted right to show "THE CROWN" sign */}
+      <div className="md:hidden absolute bottom-0 left-0 right-0 w-full h-[48%] z-0 pointer-events-none overflow-hidden">
         <img
           src="/assets/the_crown_night.jpg"
           alt="The Crown Venue"
-          className="w-full h-full object-cover object-bottom"
+          className="w-full h-full object-cover object-[82%_bottom]"
         />
         {/* Soft top gradient blend into upper dark midnight section background */}
         <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#090C14] via-[#090C14]/50 to-transparent" />
         {/* Dark bottom gradient overlay for script text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
       </div>
 
-      {/* 2A. Mobile Details Layout (Starts plain with text, quote sits at lower empty space) */}
-      <div className="md:hidden relative z-10 w-full max-w-sm mx-auto min-h-[100dvh] flex flex-col justify-between pt-16 pb-6 px-5">
+      {/* 2A. Mobile Details Layout (Pushed higher up into upper canvas) */}
+      <div className="md:hidden relative z-10 w-full max-w-sm mx-auto min-h-[100dvh] flex flex-col justify-between pt-6 xs:pt-7 pb-5 px-5">
         
         {/* Top Header & Details List */}
         <div className="w-full flex flex-col">
-          {/* Header */}
-          <div className="text-center mb-6 pt-1">
+          {/* Header (Lifted higher up) */}
+          <div className="text-center mb-3.5 pt-0">
             <h2
-              className="font-display text-[38px] xs:text-[42px] font-normal tracking-wide mb-1 leading-tight drop-shadow-md"
+              className="font-display text-[35px] xs:text-[38px] font-normal tracking-wide mb-0.5 leading-tight drop-shadow-md"
               style={{
                 background: 'linear-gradient(180deg, #FFFFFF 0%, #F5E5C9 50%, #DFC07A 100%)',
                 WebkitBackgroundClip: 'text',
@@ -62,57 +62,57 @@ export default function DetailsSection() {
             >
               The Details
             </h2>
-            <p className="text-[10.5px] font-sans-ui uppercase tracking-[0.28em] text-[#E5E2DC] font-normal">
+            <p className="text-[10px] font-sans-ui uppercase tracking-[0.26em] text-[#E5E2DC] font-normal">
               All you need to know
             </p>
           </div>
 
-          {/* 4 Detail Rows with Bare Gold Icons (matching reference) */}
-          <div className="flex flex-col space-y-4 mb-6 text-left">
+          {/* 4 Detail Rows with Bare Gold Icons */}
+          <div className="flex flex-col space-y-3 mb-3.5 text-left">
             {/* 1. Date */}
-            <div className="flex items-start space-x-4">
-              <Calendar className="w-6 h-6 text-[#DFC07A] shrink-0 mt-0.5" strokeWidth={1.8} />
+            <div className="flex items-start space-x-3.5">
+              <Calendar className="w-5 h-5 text-[#DFC07A] shrink-0 mt-0.5" strokeWidth={1.8} />
               <div>
-                <p className="text-[15px] font-medium text-[#F3EFE4] leading-snug">Saturday</p>
-                <p className="text-[13px] text-[#A9A6A0] leading-snug mt-0.5">November 21, 2026</p>
+                <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">Saturday</p>
+                <p className="text-[12.5px] text-[#A9A6A0] leading-snug mt-0.5">November 21, 2026</p>
               </div>
             </div>
 
             {/* 2. Time */}
-            <div className="flex items-center space-x-4">
-              <Clock className="w-6 h-6 text-[#DFC07A] shrink-0" strokeWidth={1.8} />
-              <p className="text-[15px] font-medium text-[#F3EFE4] leading-snug">7:00 PM Onwards</p>
+            <div className="flex items-center space-x-3.5">
+              <Clock className="w-5 h-5 text-[#DFC07A] shrink-0" strokeWidth={1.8} />
+              <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">7:00 PM Onwards</p>
             </div>
 
             {/* 3. Venue */}
-            <div className="flex items-start space-x-4">
-              <MapPin className="w-6 h-6 text-[#DFC07A] fill-[#DFC07A] shrink-0 mt-0.5" />
+            <div className="flex items-start space-x-3.5">
+              <MapPin className="w-5 h-5 text-[#DFC07A] fill-[#DFC07A] shrink-0 mt-0.5" />
               <div>
-                <p className="text-[15px] font-medium text-[#F3EFE4] leading-snug">Frisco Hall Event Center,</p>
-                <p className="text-[13px] text-[#A9A6A0] leading-snug mt-0.5">Texas, U.S.A</p>
+                <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">Frisco Hall Event Center,</p>
+                <p className="text-[12.5px] text-[#A9A6A0] leading-snug mt-0.5">Texas, U.S.A</p>
               </div>
             </div>
 
             {/* 4. Attire */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3.5">
               <svg
-                className="w-6 h-6 text-[#DFC07A] shrink-0 fill-current"
+                className="w-5 h-5 text-[#DFC07A] shrink-0 fill-current"
                 viewBox="0 0 24 24"
               >
                 <path d="M9 2.5 L10.5 2.5 L11.2 6.5 L12 3 L12.8 6.5 L13.5 2.5 L15 2.5 L14.2 8.5 L9.8 8.5 Z" />
                 <path d="M9.6 9.5 L14.4 9.5 L17.2 21.5 L14 21.5 L12.5 13 L12 13 L11.5 13 L10 21.5 L6.8 21.5 Z" />
               </svg>
-              <p className="text-[15px] font-medium text-[#F3EFE4] leading-snug">Indo-Western or Cocktail Attire</p>
+              <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">Indo-Western or Cocktail Attire</p>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col space-y-3 mb-4">
+          <div className="flex flex-col space-y-2.5 mb-2">
             {/* Primary Button: Add to Calendar */}
             <div className="relative">
               <button
                 onClick={() => setShowCalendarOptions(!showCalendarOptions)}
-                className="w-full bg-[#ECC68F] hover:bg-[#F3D4A3] text-[#12141C] font-sans-ui text-[14px] font-semibold tracking-wider py-3.5 px-6 rounded-full flex items-center justify-center space-x-2.5 transition-all shadow-lg active:scale-95 cursor-pointer"
+                className="w-full bg-[#ECC68F] hover:bg-[#F3D4A3] text-[#12141C] font-sans-ui text-[13.5px] font-semibold tracking-wider py-3 px-5 rounded-full flex items-center justify-center space-x-2.5 transition-all shadow-lg active:scale-95 cursor-pointer"
               >
                 <Calendar className="w-4 h-4 text-[#12141C]" strokeWidth={2.2} />
                 <span>{downloadSuccess ? 'Calendar Saved!' : 'Add to Calendar'}</span>
@@ -151,7 +151,7 @@ export default function DetailsSection() {
               href={EVENT_DETAILS.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#0E1119]/80 border border-[#ECC68F]/90 hover:border-[#ECC68F] text-[#F3EFE4] hover:text-[#ECC68F] font-sans-ui text-[14px] font-medium tracking-wider py-3.5 px-6 rounded-full flex items-center justify-center space-x-2.5 transition-all shadow-md active:scale-95 cursor-pointer"
+              className="w-full bg-[#0E1119]/80 border border-[#ECC68F]/90 hover:border-[#ECC68F] text-[#F3EFE4] hover:text-[#ECC68F] font-sans-ui text-[13.5px] font-medium tracking-wider py-3 px-5 rounded-full flex items-center justify-center space-x-2.5 transition-all shadow-md active:scale-95 cursor-pointer"
             >
               <MapPin className="w-4 h-4 text-[#ECC68F] fill-[#ECC68F]" />
               <span>View on Maps</span>
@@ -160,8 +160,8 @@ export default function DetailsSection() {
         </div>
 
         {/* Lower Empty Space Over Background: Script Quote */}
-        <div className="w-full text-center mt-auto pt-6 pb-2 z-10">
-          <p className="font-script text-white text-[22px] xs:text-[25px] sm:text-[28px] leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+        <div className="w-full text-center mt-auto pt-4 pb-2 z-10">
+          <p className="font-script text-white text-[21px] xs:text-[23px] sm:text-[26px] leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
             Good music. Great company.<br />
             Unforgettable moments.
           </p>
