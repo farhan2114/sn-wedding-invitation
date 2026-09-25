@@ -23,11 +23,9 @@ export default function HeroSection({ onScrollDown }) {
           style={{ backgroundImage: `url('/assets/hero_mobile_bg.png')` }}
         />
 
-        {/* Desktop Background: hall_background.jpg with Cinematic Push-In */}
+        {/* Desktop Background: hall_background.jpg */}
         <div
-          className={`hidden md:block absolute inset-0 bg-cover bg-center sm:bg-[center_center] transition-transform duration-1000 ease-out ${
-            isTransitioning ? 'scale-115 filter brightness-105' : 'scale-100'
-          }`}
+          className="hidden md:block absolute inset-0 bg-cover bg-center sm:bg-[center_center]"
           style={{ backgroundImage: `url('/assets/hall_background.jpg')` }}
         />
         {/* Vignette overlay */}
@@ -36,9 +34,7 @@ export default function HeroSection({ onScrollDown }) {
       </div>
 
       {/* 2. Top Ceiling Accent: Hanging Golden Tube Pendant Lights (Desktop only) */}
-      <div className={`hidden md:block absolute -top-2 left-[18%] sm:left-[20%] md:left-[22%] lg:left-[24%] z-10 pointer-events-none transition-transform duration-1000 ease-out ${
-        isTransitioning ? 'translate-y-2 scale-105' : 'translate-y-0'
-      }`}>
+      <div className="hidden md:block absolute -top-2 left-[18%] sm:left-[20%] md:left-[22%] lg:left-[24%] z-10 pointer-events-none">
         <img
           src="/assets/elements/pendant_lights_hd.png"
           alt="Hanging Tube Pendant Lights"
@@ -47,9 +43,7 @@ export default function HeroSection({ onScrollDown }) {
       </div>
 
       {/* 3. Top-Right Ceiling Accent: Large Hanging Golden Disco Ball (Desktop only) */}
-      <div className={`hidden md:block absolute top-1 sm:top-3 md:top-5 right-3 sm:right-8 md:right-14 lg:right-20 z-20 pointer-events-none transition-transform duration-1000 ease-out ${
-        isTransitioning ? 'scale-110' : 'scale-100'
-      }`}>
+      <div className="hidden md:block absolute top-1 sm:top-3 md:top-5 right-3 sm:right-8 md:right-14 lg:right-20 z-20 pointer-events-none">
         <img
           src="/assets/elements/disco_ball_hd.png"
           alt="Golden Mirror Disco Ball"
@@ -58,9 +52,7 @@ export default function HeroSection({ onScrollDown }) {
       </div>
 
       {/* 4. Bottom-Right Floor Accent: Floral Candles Decor (Desktop only) */}
-      <div className={`hidden md:block absolute bottom-5 sm:bottom-7 md:bottom-9 lg:bottom-12 right-2 sm:right-6 md:right-10 lg:right-14 z-20 pointer-events-none transition-transform duration-1000 ease-out ${
-        isTransitioning ? 'scale-105' : 'scale-100'
-      }`}>
+      <div className="hidden md:block absolute bottom-5 sm:bottom-7 md:bottom-9 lg:bottom-12 right-2 sm:right-6 md:right-10 lg:right-14 z-20 pointer-events-none">
         <img
           src="/assets/elements/hd_floral_candles.png"
           alt="Wedding Floral & Candle Decor"
@@ -145,10 +137,8 @@ export default function HeroSection({ onScrollDown }) {
       {/* 5B. Desktop Hero Content Layout (Unchanged for screens >= md) */}
       <div className="hidden md:flex relative z-20 w-full max-w-7xl mx-auto flex-col md:flex-row items-center md:items-end justify-between min-h-[92vh] pt-14 md:pt-16 pb-0">
         
-        {/* Left Side: Couple Cutout with Cinematic Camera Push-In */}
-        <div className={`w-full md:w-1/2 flex justify-center md:justify-start items-end relative order-2 md:order-1 mt-6 md:mt-0 self-end pb-0 mb-0 transition-transform duration-1000 ease-out ${
-          isTransitioning ? 'scale-[1.04] translate-y-1' : 'scale-100'
-        }`}>
+        {/* Left Side: Couple Cutout */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-start items-end relative order-2 md:order-1 mt-6 md:mt-0 self-end pb-0 mb-0">
           <div className="relative flex items-end justify-center md:justify-start w-full">
             <img
               src="/assets/couple_cutout.png"
@@ -158,11 +148,9 @@ export default function HeroSection({ onScrollDown }) {
           </div>
         </div>
 
-        {/* Right Side: Royal Floral Arch Card with Parallax Depth Response */}
+        {/* Right Side: Royal Floral Arch Card */}
         <div className="w-full md:w-1/2 flex justify-center md:justify-end items-center order-1 md:order-2 self-center my-auto py-3">
-          <div className={`w-full max-w-lg sm:max-w-xl md:max-w-[560px] lg:max-w-[600px] relative rounded-[40px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-[#D2A85C]/40 group transition-all duration-1000 ease-out ${
-            isTransitioning ? 'scale-[1.03] shadow-[0_30px_80px_rgba(210,168,92,0.3)] border-[#D2A85C]' : 'scale-100 hover:shadow-[0_30px_70px_rgba(210,168,92,0.25)]'
-          }`}>
+          <div className="w-full max-w-lg sm:max-w-xl md:max-w-[560px] lg:max-w-[600px] relative rounded-[40px] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-[#D2A85C]/40 group hover:shadow-[0_30px_70px_rgba(210,168,92,0.25)] transition-all duration-300">
             
             {/* Background Image of the Royal Floral Arch */}
             <div
