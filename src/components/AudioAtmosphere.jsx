@@ -10,7 +10,7 @@ import React, { useEffect, useRef } from 'react';
 export const AUDIO_SRC = '/assets/music.mp3';
 export const DEFAULT_VOLUME = 0.55; // 0.0 (silent) to 1.0 (loud)
 
-export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
+export default function AudioAtmosphere({ onPlayStateChange, onAutoplaySuccess, toggleRef }) {
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
 
     // Provide imperative toggle handle to parent
     if (toggleRef) {
-      toggleRef.current = () => {
+      const toggle = () => {
         if (!audioRef.current) return;
         if (audioRef.current.paused) {
           audioRef.current.play().catch(() => {});
@@ -38,6 +38,17 @@ export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
           audioRef.current.pause();
         }
       };
+      toggle.play = () => {
+        if (audioRef.current && audioRef.current.paused) {
+          audioRef.current.play().catch(() => {});
+        }
+      };
+      toggle.pause = () => {
+        if (audioRef.current && !audioRef.current.paused) {
+          audioRef.current.pause();
+        }
+      };
+      toggleRef.current = toggle;
     }
 
     // 1. Attempt autoplay immediately when website opens
@@ -47,6 +58,7 @@ export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
         playPromise
           .then(() => {
             onPlayStateChange?.(true);
+            onAutoplaySuccess?.();
           })
           .catch(() => {
             // Browser blocked unprompted unmuted autoplay
