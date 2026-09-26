@@ -80,9 +80,7 @@ export default function App() {
   const handleRsvpSubmitted = (data) => {
     setRsvpSubmission(data);
     setEditingRsvpData(data);
-    setTimeout(() => {
-      scrollToSection('thank-you');
-    }, 350);
+    // Keep user in RSVP section to view the confirmed/updated card in place
   };
 
   return (

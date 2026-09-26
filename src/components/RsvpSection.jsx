@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Check, Minus, Plus, Utensils, Leaf, Edit3, RefreshCw } from 'lucide-react';
+import { Check, Minus, Plus, Utensils, Leaf, Edit3, RefreshCw, Sparkles, Calendar } from 'lucide-react';
 import { submitRsvp, getSavedRsvp } from '../services/rsvpService';
+import { downloadIcsFile } from '../utils/calendar';
 
 export default function RsvpSection({ onRsvpSubmitted, editingData }) {
   const [formData, setFormData] = useState({
@@ -16,6 +17,10 @@ export default function RsvpSection({ onRsvpSubmitted, editingData }) {
   });
 
   const [isEditing, setIsEditing] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(() => {
+    const saved = getSavedRsvp();
+    return Boolean(saved && (saved.firstName || saved.email));
+  });
 
   useEffect(() => {
     const saved = editingData || getSavedRsvp();
@@ -84,6 +89,7 @@ export default function RsvpSection({ onRsvpSubmitted, editingData }) {
     } finally {
       setIsSubmitting(false);
       setIsEditing(true);
+      setIsSubmitted(true);
       if (onRsvpSubmitted) {
         onRsvpSubmitted({ ...formData, isEdit: isEditing });
       }
@@ -114,33 +120,123 @@ export default function RsvpSection({ onRsvpSubmitted, editingData }) {
           <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#D2A85C]/15 to-transparent rounded-bl-full pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-[#D2A85C]/10 to-transparent rounded-tr-full pointer-events-none" />
 
-          {/* Title & Subtitle */}
-          <div className="text-center mb-5 sm:mb-6">
-            <h2 className="font-display text-4xl sm:text-5xl text-[#E7CE9C] tracking-wide font-normal mb-1.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-              RSVP
-            </h2>
-            <p className="text-[10px] sm:text-[11px] font-sans-ui uppercase tracking-[0.24em] text-[#A9A6A0]">
-              We would love to hear from you
-            </p>
-          </div>
-
-          {/* Editing Mode Banner */}
-          {isEditing && (
-            <div className="mb-5 p-3 sm:p-3.5 rounded-2xl bg-[#D2A85C]/15 border border-[#D2A85C]/40 backdrop-blur-md flex items-center justify-between animate-in fade-in duration-300">
-              <div className="flex items-center space-x-2.5">
-                <Edit3 className="w-4 h-4 text-[#D2A85C] flex-shrink-0" />
-                <span className="text-xs text-[#F3EFE4] font-sans-ui">
-                  Editing RSVP for <span className="text-[#D2A85C] font-semibold">{formData.firstName} {formData.lastName}</span>
-                </span>
+          {/* Conditional Rendering: Submitted Card vs. Active Form */}
+          {isSubmitted ? (
+            <div className="text-center py-4 sm:py-6 animate-in fade-in zoom-in-95 duration-500">
+              {/* Sparkling Golden Badge */}
+              <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full bg-[#D2A85C]/15 border border-[#D2A85C]/40 flex items-center justify-center shadow-[0_0_30px_rgba(210,168,92,0.35)]">
+                <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-[#D2A85C] animate-pulse" />
               </div>
-              <span className="text-[9.5px] uppercase tracking-wider text-[#A9A6A0] bg-[#12141C]/80 px-2.5 py-1 rounded-full border border-[#D2A85C]/30 flex-shrink-0 ml-2">
-                Updates Same Row
-              </span>
-            </div>
-          )}
 
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4 text-left" noValidate>
+              {/* Section Badge */}
+              <p className="text-xs uppercase tracking-[0.28em] text-[#D2A85C] font-semibold mb-2">
+                {formData.isEdit ? 'RSVP Updated' : 'RSVP Received'}
+              </p>
+
+              {/* Couple Greeting Message */}
+              <h3 className="font-display text-2xl sm:text-3xl text-[#F3EFE4] mb-2 leading-snug px-2">
+                {formData.attending === 'yes'
+                  ? `We can't wait to celebrate with you, ${formData.firstName}!`
+                  : `Thank you for letting us know, ${formData.firstName}. You will be missed!`}
+              </h3>
+              <p className="text-xs text-[#A9A6A0] font-sans-ui mb-5">
+                Your response has been recorded in our guest list.
+              </p>
+
+              {/* Summary Card */}
+              <div className="mb-6 p-4 sm:p-5 rounded-2xl bg-[#1B1F2B]/90 border border-[#333A4D] max-w-sm mx-auto space-y-2.5 text-xs text-left shadow-lg">
+                <div className="flex justify-between items-center pb-2 border-b border-[#333A4D]/60">
+                  <span className="text-[#A9A6A0]">Guest</span>
+                  <span className="text-[#F3EFE4] font-medium">{formData.firstName} {formData.lastName}</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-[#333A4D]/60">
+                  <span className="text-[#A9A6A0]">Email</span>
+                  <span className="text-[#F3EFE4] font-medium text-[11px] truncate max-w-[180px]">{formData.email}</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-[#333A4D]/60">
+                  <span className="text-[#A9A6A0]">Response</span>
+                  <span className={`font-semibold ${formData.attending === 'yes' ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    {formData.attending === 'yes' ? '✓ Joyfully Attending' : '✕ Regretfully Declined'}
+                  </span>
+                </div>
+                {formData.attending === 'yes' && (
+                  <>
+                    <div className="flex justify-between items-center pb-2 border-b border-[#333A4D]/60">
+                      <span className="text-[#A9A6A0]">Party Size</span>
+                      <span className="text-[#D2A85C] font-semibold">
+                        {Number(formData.guests || 1) + Number(formData.children || 0)} Guests ({formData.guests} Adult{formData.guests > 1 ? 's' : ''}{formData.children > 0 ? `, ${formData.children} Child${formData.children > 1 ? 'ren' : ''}` : ''})
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center pb-2 border-b border-[#333A4D]/60">
+                      <span className="text-[#A9A6A0]">Dietary</span>
+                      <span className="text-[#F3EFE4] font-medium capitalize">
+                        {formData.dietary === 'non-veg' ? 'Non-Vegetarian' : 'Vegetarian'}
+                      </span>
+                    </div>
+                  </>
+                )}
+                {formData.wishes && formData.wishes.trim() !== '' && (
+                  <div className="pt-1">
+                    <span className="text-[#A9A6A0] block mb-1">Your Wishes:</span>
+                    <p className="text-[#E7CE9C] italic bg-[#12141C]/60 p-2.5 rounded-xl border border-[#333A4D]/50 text-[11px]">
+                      "{formData.wishes}"
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Action Buttons: Save to Calendar & Edit RSVP */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                {formData.attending === 'yes' && (
+                  <button
+                    type="button"
+                    onClick={downloadIcsFile}
+                    className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 text-xs font-semibold uppercase tracking-wider text-[#12141C] bg-[#D2A85C] hover:bg-[#E7CE9C] px-6 py-3.5 rounded-full transition-all duration-300 shadow-gold-glow hover:scale-[1.02] cursor-pointer active-press"
+                  >
+                    <Calendar className="w-4 h-4" />
+                    <span>Save to Calendar</span>
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => setIsSubmitted(false)}
+                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 text-xs font-semibold uppercase tracking-wider text-[#E7CE9C] hover:text-[#FFFFFF] border border-[#D2A85C]/60 hover:border-[#D2A85C] px-6 py-3.5 rounded-full transition-all bg-[#1B1F2B] hover:bg-[#D2A85C]/20 cursor-pointer active-press"
+                >
+                  <Edit3 className="w-4 h-4 text-[#D2A85C]" />
+                  <span>Edit RSVP</span>
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* Title & Subtitle */}
+              <div className="text-center mb-5 sm:mb-6">
+                <h2 className="font-display text-4xl sm:text-5xl text-[#E7CE9C] tracking-wide font-normal mb-1.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+                  RSVP
+                </h2>
+                <p className="text-[10px] sm:text-[11px] font-sans-ui uppercase tracking-[0.24em] text-[#A9A6A0]">
+                  We would love to hear from you
+                </p>
+              </div>
+
+              {/* Editing Mode Banner */}
+              {isEditing && (
+                <div className="mb-5 p-3 sm:p-3.5 rounded-2xl bg-[#D2A85C]/15 border border-[#D2A85C]/40 backdrop-blur-md flex items-center justify-between animate-in fade-in duration-300">
+                  <div className="flex items-center space-x-2.5">
+                    <Edit3 className="w-4 h-4 text-[#D2A85C] flex-shrink-0" />
+                    <span className="text-xs text-[#F3EFE4] font-sans-ui">
+                      Editing RSVP for <span className="text-[#D2A85C] font-semibold">{formData.firstName} {formData.lastName}</span>
+                    </span>
+                  </div>
+                  <span className="text-[9.5px] uppercase tracking-wider text-[#A9A6A0] bg-[#12141C]/80 px-2.5 py-1 rounded-full border border-[#D2A85C]/30 flex-shrink-0 ml-2">
+                    Updates Same Row
+                  </span>
+                </div>
+              )}
+
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="space-y-4 text-left" noValidate>
             
             {/* First Name */}
             <div>
@@ -411,9 +507,11 @@ export default function RsvpSection({ onRsvpSubmitted, editingData }) {
               </button>
             </div>
           </form>
+        </>
+      )}
 
-        </div>
-      </div>
-    </section>
+    </div>
+  </div>
+</section>
   );
 }

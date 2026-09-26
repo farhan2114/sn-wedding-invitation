@@ -30,45 +30,7 @@ export default function ThankYouSection({ rsvpSubmission, onEditRsvp }) {
 
       <div className="relative z-20 max-w-lg w-full mx-auto flex-1 flex flex-col justify-between items-center">
         {/* Top & Center Area */}
-        <div className="pt-1 sm:pt-4 w-full my-auto">
-          {/* Post-submit confirmation badge if submitted */}
-          {rsvpSubmission && (
-            <div className="-mt-6 xs:-mt-8 sm:mt-0 mb-10 xs:mb-12 sm:mb-14 p-4 rounded-2xl bg-[#1B1F2B]/90 border border-[#D2A85C]/50 backdrop-blur-md animate-in fade-in zoom-in-95 duration-500 shadow-2xl">
-              <div className="flex items-center justify-center space-x-2 text-[#D2A85C] mb-1">
-                <Sparkles className="w-4 h-4" />
-                <span className="text-xs uppercase tracking-widest font-semibold">
-                  {rsvpSubmission.isEdit ? 'RSVP Updated' : 'RSVP Received'}
-                </span>
-                <Sparkles className="w-4 h-4" />
-              </div>
-              <p className="text-sm text-[#F3EFE4] font-display">
-                {rsvpSubmission.attending === 'yes'
-                  ? `We can't wait to celebrate with you, ${rsvpSubmission.firstName}!`
-                  : `Thank you for letting us know, ${rsvpSubmission.firstName}. You will be missed!`}
-              </p>
-              
-              <div className="mt-3.5 flex flex-wrap items-center justify-center gap-2.5">
-                {rsvpSubmission.attending === 'yes' && (
-                  <button
-                    onClick={downloadIcsFile}
-                    className="inline-flex items-center space-x-2 text-xs text-[#D2A85C] hover:text-[#E7CE9C] border border-[#D2A85C]/50 px-4 py-1.5 rounded-full transition-colors bg-[#12141C]/60 cursor-pointer"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Save to Calendar</span>
-                  </button>
-                )}
-                {onEditRsvp && (
-                  <button
-                    onClick={onEditRsvp}
-                    className="inline-flex items-center space-x-2 text-xs text-[#E7CE9C] hover:text-[#FFFFFF] border border-[#D2A85C]/60 px-4 py-1.5 rounded-full transition-colors bg-[#D2A85C]/20 hover:bg-[#D2A85C]/35 cursor-pointer"
-                  >
-                    <Edit3 className="w-3.5 h-3.5 text-[#D2A85C]" />
-                    <span>Edit RSVP</span>
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
+        <div className="pt-4 sm:pt-6 w-full my-auto">
 
           {/* Headline: THANK YOU
               Font: Brittany Signature
