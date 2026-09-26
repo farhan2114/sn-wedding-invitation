@@ -12,7 +12,8 @@
  */
 
 export const GOOGLE_SHEETS_WEBHOOK_URL = 
-  import.meta.env.VITE_GOOGLE_SHEETS_URL || '';
+  import.meta.env.VITE_GOOGLE_SHEETS_URL || 
+  'https://script.google.com/macros/s/AKfycbwGvJkOOBVWTezbjgCMxGi8SNLQuSQkpSLy-1IHqyW8_rnkInZPyLX4SlWk97q1CkZa/exec';
 
 export async function submitRsvp(formData) {
   const timestamp = new Date().toLocaleString('en-US', {
