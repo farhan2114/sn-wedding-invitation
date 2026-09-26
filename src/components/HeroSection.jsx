@@ -101,7 +101,7 @@ export default function HeroSection({ onScrollDown }) {
             Cocktails
           </h1>
           <p className="text-[9px] xs:text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.24em] text-white font-medium leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
-            A night of music, dance, celebration<br />and love
+            A night of music, dance,<br />celebration and love
           </p>
         </div>
 
@@ -186,7 +186,7 @@ export default function HeroSection({ onScrollDown }) {
 
               {/* Subtext */}
               <p className="text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.26em] text-[#E7CE9C]/90 leading-relaxed max-w-xs sm:max-w-sm mx-auto mb-6 drop-shadow-sm">
-                A night of music, dance, celebration<br />and love
+                A night of music, dance,<br />celebration and love
               </p>
 
               {/* Date & Venue Box */}

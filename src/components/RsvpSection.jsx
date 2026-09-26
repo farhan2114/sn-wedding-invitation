@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Check, Minus, Plus, Utensils, Leaf } from 'lucide-react';
+import { submitRsvp } from '../services/rsvpService';
 
 export default function RsvpSection({ onRsvpSubmitted }) {
   const [formData, setFormData] = useState({
@@ -49,27 +50,22 @@ export default function RsvpSection({ onRsvpSubmitted }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      await submitRsvp(formData);
+    } catch (err) {
+      console.error('RSVP submission error:', err);
+    } finally {
       setIsSubmitting(false);
-
-      try {
-        const stored = JSON.parse(localStorage.getItem('sn_wedding_rsvp') || '[]');
-        stored.push({ ...formData, timestamp: new Date().toISOString() });
-        localStorage.setItem('sn_wedding_rsvp', JSON.stringify(stored));
-      } catch (err) {
-        console.error('Failed to save RSVP:', err);
-      }
-
       if (onRsvpSubmitted) {
         onRsvpSubmitted(formData);
       }
-    }, 450);
+    }
   };
 
   return (
