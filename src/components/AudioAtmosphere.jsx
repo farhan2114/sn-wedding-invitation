@@ -28,13 +28,31 @@ export default function AudioAtmosphere({ isPlaying }) {
 
     const audio = audioRef.current;
 
-    if (isPlaying) {
+    const attemptPlay = () => {
       const playPromise = audio.play();
       if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.warn('Playback error (check if music.mp3 exists in public/assets):', err);
+        playPromise.catch(() => {
+          // If browser policy blocked unprompted audio, unlock on the very first touch/scroll/click
+          const unlock = () => {
+            if (audioRef.current) {
+              audioRef.current.play().catch(() => {});
+            }
+            window.removeEventListener('click', unlock);
+            window.removeEventListener('touchstart', unlock);
+            window.removeEventListener('scroll', unlock);
+            window.removeEventListener('keydown', unlock);
+          };
+
+          window.addEventListener('click', unlock, { once: true });
+          window.addEventListener('touchstart', unlock, { once: true });
+          window.addEventListener('scroll', unlock, { once: true });
+          window.addEventListener('keydown', unlock, { once: true });
         });
       }
+    };
+
+    if (isPlaying) {
+      attemptPlay();
     } else {
       audio.pause();
     }

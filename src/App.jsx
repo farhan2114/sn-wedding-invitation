@@ -9,7 +9,7 @@ import AudioAtmosphere from './components/AudioAtmosphere';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('invitation');
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(true);
   const [rsvpSubmission, setRsvpSubmission] = useState(null);
 
   // Scroll listener to update active header indicator

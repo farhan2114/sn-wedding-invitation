@@ -30,10 +30,10 @@ export default function ThankYouSection({ rsvpSubmission }) {
 
       <div className="relative z-20 max-w-lg w-full mx-auto flex-1 flex flex-col justify-between items-center">
         {/* Top & Center Area */}
-        <div className="pt-6 w-full my-auto">
+        <div className="pt-1 sm:pt-4 w-full my-auto">
           {/* Post-submit confirmation badge if submitted */}
           {rsvpSubmission && (
-            <div className="mb-6 p-4 rounded-2xl bg-[#1B1F2B]/90 border border-[#D2A85C]/50 backdrop-blur-md animate-in fade-in zoom-in-95 duration-500 shadow-2xl">
+            <div className="-mt-6 xs:-mt-8 sm:mt-0 mb-10 xs:mb-12 sm:mb-14 p-4 rounded-2xl bg-[#1B1F2B]/90 border border-[#D2A85C]/50 backdrop-blur-md animate-in fade-in zoom-in-95 duration-500 shadow-2xl">
               <div className="flex items-center justify-center space-x-2 text-[#D2A85C] mb-1">
                 <Sparkles className="w-4 h-4" />
                 <span className="text-xs uppercase tracking-widest font-semibold">
