@@ -17,10 +17,10 @@ export default function HeroSection({ onScrollDown }) {
     >
       {/* 1. Room Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Mobile Background: using the uploaded high-res image media_1790353885532.png */}
+        {/* Mobile Background: Luxury Hall Ballroom */}
         <div
           className="md:hidden absolute inset-0 bg-cover bg-center transition-all duration-700"
-          style={{ backgroundImage: `url('/assets/hero_mobile_bg.png')` }}
+          style={{ backgroundImage: `url('/assets/hall_background.jpg')` }}
         />
 
         {/* Desktop Background: hall_background.jpg */}
@@ -29,7 +29,7 @@ export default function HeroSection({ onScrollDown }) {
           style={{ backgroundImage: `url('/assets/hall_background.jpg')` }}
         />
         {/* Vignette overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#12141C]/80 via-transparent to-[#12141C]/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#12141C] via-[#12141C]/50 to-[#12141C]/80" />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#12141C]/60 hidden md:block" />
       </div>
 
@@ -105,10 +105,19 @@ export default function HeroSection({ onScrollDown }) {
           </p>
         </div>
 
-        {/* Center: Glowing Neon "Let's Celebrate" script text (click to scroll down) */}
+        {/* Center-Right: Couple Cutout for Mobile */}
+        <div className="absolute right-0 xs:right-1 sm:right-4 bottom-24 xs:bottom-28 z-20 pointer-events-none flex justify-end items-end">
+          <img
+            src="/assets/couple_cutout.png"
+            alt="Sreeja & Nikhil"
+            className="h-[46vh] max-h-[420px] xs:max-h-[460px] w-auto object-contain object-bottom drop-shadow-[0_12px_30px_rgba(0,0,0,0.95)]"
+          />
+        </div>
+
+        {/* Center-Left: Glowing Neon "Let's Celebrate" script text (click to scroll down) */}
         <button
           onClick={handleScroll}
-          className="absolute left-3 sm:left-6 top-[65%] -translate-y-1/2 z-30 font-script text-[40px] sm:text-[48px] text-[#FFF4D6] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none"
+          className="absolute left-3 sm:left-6 top-[62%] -translate-y-1/2 z-30 font-script text-[38px] xs:text-[42px] sm:text-[48px] text-[#FFF4D6] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none text-left"
           style={{
             textShadow: '0 0 10px rgba(255, 235, 180, 0.95), 0 0 25px rgba(210, 168, 92, 0.9), 0 0 45px rgba(210, 168, 92, 0.75)',
             filter: 'drop-shadow(0 0 15px rgba(210, 168, 92, 0.9))'

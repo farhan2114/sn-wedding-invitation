@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import DetailsSection from './components/DetailsSection';
@@ -9,8 +9,15 @@ import AudioAtmosphere from './components/AudioAtmosphere';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('invitation');
-  const [isAudioPlaying, setIsAudioPlaying] = useState(true);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [rsvpSubmission, setRsvpSubmission] = useState(null);
+  const toggleAudioRef = useRef(null);
+
+  const handleToggleAudio = () => {
+    if (toggleAudioRef.current) {
+      toggleAudioRef.current();
+    }
+  };
 
   // Scroll listener to update active header indicator
   useEffect(() => {
@@ -61,10 +68,10 @@ export default function App() {
       {/* Subtle Golden Bokeh Particles */}
       <AmbientParticles />
 
-      {/* Web Audio Synthesizer */}
+      {/* Background Audio Player */}
       <AudioAtmosphere
-        isPlaying={isAudioPlaying}
-        onToggle={() => setIsAudioPlaying(!isAudioPlaying)}
+        onPlayStateChange={setIsAudioPlaying}
+        toggleRef={toggleAudioRef}
       />
 
       {/* Sticky Top Header */}
@@ -72,7 +79,7 @@ export default function App() {
         activeSection={activeSection}
         onNavigate={scrollToSection}
         isAudioPlaying={isAudioPlaying}
-        onToggleAudio={() => setIsAudioPlaying(!isAudioPlaying)}
+        onToggleAudio={handleToggleAudio}
       />
 
       {/* Main Flow: Seamless single-page scrolling */}
