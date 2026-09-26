@@ -48,7 +48,7 @@ function doPost(e) {
     var adults = attending === 'Yes' ? Number(data.adults || data.guests || 1) : 0;
     var children = attending === 'Yes' ? Number(data.children || 0) : 0;
     var totalGuests = attending === 'Yes' ? (adults + children) : 0;
-    var dietary = attending === 'Yes' ? (data.dietary || 'Standard') : 'N/A';
+    var dietary = attending === 'Yes' ? (data.dietary === 'non-veg' || data.dietary === 'Non-Veg' ? 'Non-Veg' : 'Vegetarian') : 'N/A';
     var wishes = data.wishes || '';
 
     // Append new row
@@ -171,7 +171,7 @@ function setupSheet() {
   sheet.getRange("E3").setFormula('=SUM(E8:E)');
   sheet.getRange("F3").setFormula('=SUM(F8:F)');
   sheet.getRange("G3").setFormula('=SUM(G8:G)'); // GRAND TOTAL GUESTS!
-  sheet.getRange("H3:I3").merge().setFormula('="Veg: " & COUNTIF(H8:H, "*veg*") & " | Non-Veg: " & COUNTIF(H8:H, "*non-veg*") & " | Jain: " & COUNTIF(H8:H, "*jain*")');
+  sheet.getRange("H3:I3").merge().setFormula('="Veg: " & COUNTIF(H8:H, "Vegetarian") & " | Non-Veg: " & COUNTIF(H8:H, "Non-Veg")');
 
   var metricValues = sheet.getRange("A3:I3");
   metricValues.setBackground("#F8F9FA")

@@ -31,7 +31,7 @@ export async function submitRsvp(formData) {
     adults: formData.attending === 'yes' ? Number(formData.guests || 1) : 0,
     children: formData.attending === 'yes' ? Number(formData.children || 0) : 0,
     totalGuests: formData.attending === 'yes' ? (Number(formData.guests || 1) + Number(formData.children || 0)) : 0,
-    dietary: formData.attending === 'yes' ? (formData.dietary || 'Standard') : 'N/A',
+    dietary: formData.attending === 'yes' ? (formData.dietary === 'non-veg' ? 'Non-Veg' : 'Vegetarian') : 'N/A',
     wishes: formData.wishes ? formData.wishes.trim() : ''
   };
 
