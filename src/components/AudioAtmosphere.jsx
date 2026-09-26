@@ -10,15 +10,14 @@ import React, { useEffect, useRef } from 'react';
 export const AUDIO_SRC = '/assets/music.mp3';
 export const DEFAULT_VOLUME = 0.55; // 0.0 (silent) to 1.0 (loud)
 
-export default function AudioAtmosphere({ onPlayStateChange, onAutoplaySuccess, toggleRef }) {
+export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    const audio = new Audio(AUDIO_SRC);
-    audio.loop = true;
+    const audio = audioRef.current;
+    if (!audio) return;
+
     audio.volume = DEFAULT_VOLUME;
-    audio.preload = 'auto';
-    audioRef.current = audio;
 
     const handlePlay = () => onPlayStateChange?.(true);
     const handlePause = () => onPlayStateChange?.(false);
@@ -53,15 +52,14 @@ export default function AudioAtmosphere({ onPlayStateChange, onAutoplaySuccess, 
 
     // 1. Attempt autoplay immediately when website opens
     const tryAutoplay = () => {
-      const playPromise = audio.play();
+      if (!audioRef.current) return;
+      const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
             onPlayStateChange?.(true);
-            onAutoplaySuccess?.();
           })
           .catch(() => {
-            // Browser blocked unprompted unmuted autoplay
             onPlayStateChange?.(false);
           });
       }
@@ -69,7 +67,7 @@ export default function AudioAtmosphere({ onPlayStateChange, onAutoplaySuccess, 
 
     tryAutoplay();
 
-    // 2. Global unlock on very first touch / swipe / scroll / click anywhere
+    // 2. Global unlock on any touch / swipe / scroll / click
     const unlock = () => {
       if (audioRef.current && audioRef.current.paused) {
         audioRef.current
@@ -86,18 +84,22 @@ export default function AudioAtmosphere({ onPlayStateChange, onAutoplaySuccess, 
 
     const cleanupListeners = () => {
       window.removeEventListener('pointerdown', unlock);
+      window.removeEventListener('pointerup', unlock);
       window.removeEventListener('touchstart', unlock);
       window.removeEventListener('touchend', unlock);
       window.removeEventListener('click', unlock);
       window.removeEventListener('scroll', unlock);
+      window.removeEventListener('wheel', unlock);
       window.removeEventListener('keydown', unlock);
     };
 
     window.addEventListener('pointerdown', unlock, { passive: true });
+    window.addEventListener('pointerup', unlock, { passive: true });
     window.addEventListener('touchstart', unlock, { passive: true });
     window.addEventListener('touchend', unlock, { passive: true });
     window.addEventListener('click', unlock, { passive: true });
     window.addEventListener('scroll', unlock, { passive: true });
+    window.addEventListener('wheel', unlock, { passive: true });
     window.addEventListener('keydown', unlock, { passive: true });
 
     return () => {
@@ -106,11 +108,19 @@ export default function AudioAtmosphere({ onPlayStateChange, onAutoplaySuccess, 
       audio.removeEventListener('playing', handlePlay);
       audio.removeEventListener('pause', handlePause);
       audio.removeEventListener('ended', handlePause);
-      audio.pause();
-      audioRef.current = null;
     };
   }, []);
 
-  return null;
+  return (
+    <audio
+      ref={audioRef}
+      src={AUDIO_SRC}
+      autoPlay
+      loop
+      playsInline
+      preload="auto"
+      className="hidden"
+    />
+  );
 }
 

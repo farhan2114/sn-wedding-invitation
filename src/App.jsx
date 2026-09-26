@@ -6,26 +6,13 @@ import RsvpSection from './components/RsvpSection';
 import ThankYouSection from './components/ThankYouSection';
 import AmbientParticles from './components/AmbientParticles';
 import AudioAtmosphere from './components/AudioAtmosphere';
-import InvitationCover from './components/InvitationCover';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('invitation');
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [isInvitationOpen, setIsInvitationOpen] = useState(false);
   const [rsvpSubmission, setRsvpSubmission] = useState(null);
   const [editingRsvpData, setEditingRsvpData] = useState(null);
   const toggleAudioRef = useRef(null);
-
-  const handleOpenInvitation = () => {
-    setIsInvitationOpen(true);
-    if (toggleAudioRef.current) {
-      if (typeof toggleAudioRef.current.play === 'function') {
-        toggleAudioRef.current.play();
-      } else {
-        toggleAudioRef.current();
-      }
-    }
-  };
 
   const handleToggleAudio = () => {
     if (toggleAudioRef.current) {
@@ -85,19 +72,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#12141C] text-[#F3EFE4] relative font-sans-ui selection:bg-[#D2A85C]/30 selection:text-[#E7CE9C]">
-      {/* Royal Opening Cover for Guaranteed Instant Music Playback */}
-      <InvitationCover
-        isOpen={isInvitationOpen}
-        onOpen={handleOpenInvitation}
-      />
-
       {/* Subtle Golden Bokeh Particles */}
       <AmbientParticles />
 
       {/* Background Audio Player */}
       <AudioAtmosphere
         onPlayStateChange={setIsAudioPlaying}
-        onAutoplaySuccess={() => setIsInvitationOpen(true)}
         toggleRef={toggleAudioRef}
       />
 
