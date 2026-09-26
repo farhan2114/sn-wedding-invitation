@@ -4,7 +4,7 @@
 
 export const EVENT_DETAILS = {
   title: 'Sangeet & Cocktails — S | N',
-  description: 'Join S & N for a night of music, celebration and love! Dress code: Indo-Western or Cocktail Attire.',
+  description: 'Join Sreeja & Nikhil for a night of music, dance, celebration and love! Dress code: Indo-Western or Cocktail Attire.',
   location: 'The Crown Venue, 10841 Composite Dr, Dallas, TX 75220',
   mapsUrl: 'https://maps.google.com/?q=The+Crown+Venue,+10841+Composite+Dr,+Dallas,+TX+75220',
   startDate: '20261120T180000',

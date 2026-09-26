@@ -75,11 +75,18 @@ export default function HeroSection({ onScrollDown }) {
             />
           </div>
 
-          <p className="text-[9.5px] xs:text-[10px] sm:text-[11px] font-sans-ui uppercase tracking-[0.28em] text-[#A9A6A0] font-normal leading-relaxed mb-1 drop-shadow-sm">
-            Together<br />
-            is a beautiful<br />
-            place to be
+          {/* Couple Names under logo */}
+          <p className="font-cormorant text-[13px] xs:text-[14px] sm:text-[15px] font-medium tracking-[0.32em] uppercase text-[#F3EFE4] mt-1 mb-1.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+            Sreeja &amp; Nikhil
           </p>
+
+          {/* Decorative Gold Diamond Divider */}
+          <div className="flex items-center justify-center space-x-2 w-36 xs:w-42 mx-auto mb-2 opacity-85">
+            <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#D2A85C]/80 to-[#D2A85C]" />
+            <div className="w-1.5 h-1.5 rotate-45 border border-[#D2A85C] bg-[#D2A85C]" />
+            <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-[#D2A85C]/80 to-[#D2A85C]" />
+          </div>
+
           <h1
             className="font-display text-[42px] xs:text-[46px] sm:text-[52px] tracking-wide font-normal leading-[1.03] mb-1.5"
             style={{
@@ -94,7 +101,7 @@ export default function HeroSection({ onScrollDown }) {
             Cocktails
           </h1>
           <p className="text-[9px] xs:text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.24em] text-white font-medium leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
-            A night of music, celebration<br />and love
+            A night of music, dance, celebration<br />and love
           </p>
         </div>
 
@@ -179,7 +186,7 @@ export default function HeroSection({ onScrollDown }) {
 
               {/* Subtext */}
               <p className="text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.26em] text-[#E7CE9C]/90 leading-relaxed max-w-xs sm:max-w-sm mx-auto mb-6 drop-shadow-sm">
-                A night of music, celebration<br />and love
+                A night of music, dance, celebration<br />and love
               </p>
 
               {/* Date & Venue Box */}
