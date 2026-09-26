@@ -196,14 +196,13 @@ function setupSheet() {
   // SECTION 2: GUEST RSVP LOG TABLE
   // ==========================================
   sheet.getRange("A6:I6").merge()
-    .setValue("📋 DETAILED GUEST RESPONSES")
+    .setValue("  📋 DETAILED GUEST RESPONSES")
     .setBackground("#F1E9D7")
     .setFontColor("#12141C")
     .setFontFamily("Montserrat")
     .setFontSize(10)
     .setFontWeight("bold")
-    .setVerticalAlignment("middle")
-    .setIndent(1);
+    .setVerticalAlignment("middle");
   sheet.setRowHeight(6, 24);
 
   var headers = [
