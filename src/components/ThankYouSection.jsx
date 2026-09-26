@@ -1,8 +1,8 @@
 import React from 'react';
-import { Sparkles, Calendar } from 'lucide-react';
+import { Sparkles, Calendar, Edit3 } from 'lucide-react';
 import { downloadIcsFile } from '../utils/calendar';
 
-export default function ThankYouSection({ rsvpSubmission }) {
+export default function ThankYouSection({ rsvpSubmission, onEditRsvp }) {
   return (
     <section
       id="thank-you"
@@ -37,7 +37,7 @@ export default function ThankYouSection({ rsvpSubmission }) {
               <div className="flex items-center justify-center space-x-2 text-[#D2A85C] mb-1">
                 <Sparkles className="w-4 h-4" />
                 <span className="text-xs uppercase tracking-widest font-semibold">
-                  RSVP Received
+                  {rsvpSubmission.isEdit ? 'RSVP Updated' : 'RSVP Received'}
                 </span>
                 <Sparkles className="w-4 h-4" />
               </div>
@@ -46,15 +46,27 @@ export default function ThankYouSection({ rsvpSubmission }) {
                   ? `We can't wait to celebrate with you, ${rsvpSubmission.firstName}!`
                   : `Thank you for letting us know, ${rsvpSubmission.firstName}. You will be missed!`}
               </p>
-              {rsvpSubmission.attending === 'yes' && (
-                <button
-                  onClick={downloadIcsFile}
-                  className="mt-3 inline-flex items-center space-x-2 text-xs text-[#D2A85C] hover:text-[#E7CE9C] border border-[#D2A85C]/50 px-4 py-1.5 rounded-full transition-colors bg-[#12141C]/60"
-                >
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>Save to Calendar</span>
-                </button>
-              )}
+              
+              <div className="mt-3.5 flex flex-wrap items-center justify-center gap-2.5">
+                {rsvpSubmission.attending === 'yes' && (
+                  <button
+                    onClick={downloadIcsFile}
+                    className="inline-flex items-center space-x-2 text-xs text-[#D2A85C] hover:text-[#E7CE9C] border border-[#D2A85C]/50 px-4 py-1.5 rounded-full transition-colors bg-[#12141C]/60 cursor-pointer"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Save to Calendar</span>
+                  </button>
+                )}
+                {onEditRsvp && (
+                  <button
+                    onClick={onEditRsvp}
+                    className="inline-flex items-center space-x-2 text-xs text-[#E7CE9C] hover:text-[#FFFFFF] border border-[#D2A85C]/60 px-4 py-1.5 rounded-full transition-colors bg-[#D2A85C]/20 hover:bg-[#D2A85C]/35 cursor-pointer"
+                  >
+                    <Edit3 className="w-3.5 h-3.5 text-[#D2A85C]" />
+                    <span>Edit RSVP</span>
+                  </button>
+                )}
+              </div>
             </div>
           )}
 

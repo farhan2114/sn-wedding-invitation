@@ -13,6 +13,7 @@ export default function App() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
   const [rsvpSubmission, setRsvpSubmission] = useState(null);
+  const [editingRsvpData, setEditingRsvpData] = useState(null);
   const toggleAudioRef = useRef(null);
 
   const handleOpenInvitation = () => {
@@ -30,6 +31,13 @@ export default function App() {
     if (toggleAudioRef.current) {
       toggleAudioRef.current();
     }
+  };
+
+  const handleEditRsvp = () => {
+    if (rsvpSubmission) {
+      setEditingRsvpData(rsvpSubmission);
+    }
+    scrollToSection('rsvp');
   };
 
   // Scroll listener to update active header indicator
@@ -71,6 +79,7 @@ export default function App() {
 
   const handleRsvpSubmitted = (data) => {
     setRsvpSubmission(data);
+    setEditingRsvpData(data);
     setTimeout(() => {
       scrollToSection('thank-you');
     }, 350);
@@ -111,10 +120,16 @@ export default function App() {
         <DetailsSection />
 
         {/* Section 3: RSVP */}
-        <RsvpSection onRsvpSubmitted={handleRsvpSubmitted} />
+        <RsvpSection 
+          onRsvpSubmitted={handleRsvpSubmitted} 
+          editingData={editingRsvpData}
+        />
 
         {/* Section 4: Thank You & Confirmation */}
-        <ThankYouSection rsvpSubmission={rsvpSubmission} />
+        <ThankYouSection 
+          rsvpSubmission={rsvpSubmission} 
+          onEditRsvp={handleEditRsvp}
+        />
       </main>
     </div>
   );

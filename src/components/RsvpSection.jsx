@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Check, Minus, Plus, Utensils, Leaf } from 'lucide-react';
-import { submitRsvp } from '../services/rsvpService';
+import React, { useState, useEffect } from 'react';
+import { Check, Minus, Plus, Utensils, Leaf, Edit3, RefreshCw } from 'lucide-react';
+import { submitRsvp, getSavedRsvp } from '../services/rsvpService';
 
-export default function RsvpSection({ onRsvpSubmitted }) {
+export default function RsvpSection({ onRsvpSubmitted, editingData }) {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -12,7 +12,28 @@ export default function RsvpSection({ onRsvpSubmitted }) {
     guests: 1,
     children: 0,
     wishes: '',
+    isEdit: false,
   });
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    const saved = editingData || getSavedRsvp();
+    if (saved && (saved.firstName || saved.email)) {
+      setFormData({
+        firstName: saved.firstName || '',
+        lastName: saved.lastName || '',
+        email: saved.email || '',
+        attending: saved.attending || 'yes',
+        dietary: saved.dietary || 'veg',
+        guests: Number(saved.guests || saved.adults || 1),
+        children: Number(saved.children || 0),
+        wishes: saved.wishes || '',
+        isEdit: true,
+      });
+      setIsEditing(true);
+    }
+  }, [editingData]);
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,13 +78,14 @@ export default function RsvpSection({ onRsvpSubmitted }) {
     setIsSubmitting(true);
 
     try {
-      await submitRsvp(formData);
+      await submitRsvp({ ...formData, isEdit: isEditing });
     } catch (err) {
       console.error('RSVP submission error:', err);
     } finally {
       setIsSubmitting(false);
+      setIsEditing(true);
       if (onRsvpSubmitted) {
-        onRsvpSubmitted(formData);
+        onRsvpSubmitted({ ...formData, isEdit: isEditing });
       }
     }
   };
@@ -101,6 +123,21 @@ export default function RsvpSection({ onRsvpSubmitted }) {
               We would love to hear from you
             </p>
           </div>
+
+          {/* Editing Mode Banner */}
+          {isEditing && (
+            <div className="mb-5 p-3 sm:p-3.5 rounded-2xl bg-[#D2A85C]/15 border border-[#D2A85C]/40 backdrop-blur-md flex items-center justify-between animate-in fade-in duration-300">
+              <div className="flex items-center space-x-2.5">
+                <Edit3 className="w-4 h-4 text-[#D2A85C] flex-shrink-0" />
+                <span className="text-xs text-[#F3EFE4] font-sans-ui">
+                  Editing RSVP for <span className="text-[#D2A85C] font-semibold">{formData.firstName} {formData.lastName}</span>
+                </span>
+              </div>
+              <span className="text-[9.5px] uppercase tracking-wider text-[#A9A6A0] bg-[#12141C]/80 px-2.5 py-1 rounded-full border border-[#D2A85C]/30 flex-shrink-0 ml-2">
+                Updates Same Row
+              </span>
+            </div>
+          )}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4 text-left" noValidate>
@@ -358,12 +395,18 @@ export default function RsvpSection({ onRsvpSubmitted }) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#D2A85C] hover:bg-[#E7CE9C] text-[#12141C] font-sans-ui text-sm font-semibold tracking-wider py-3.5 px-6 rounded-full transition-all duration-300 shadow-gold-glow hover:scale-[1.02] active-press disabled:opacity-70 flex items-center justify-center space-x-2"
+                className="w-full bg-[#D2A85C] hover:bg-[#E7CE9C] text-[#12141C] font-sans-ui text-sm font-semibold tracking-wider py-3.5 px-6 rounded-full transition-all duration-300 shadow-gold-glow hover:scale-[1.02] active-press disabled:opacity-70 flex items-center justify-center space-x-2 cursor-pointer"
               >
                 {isSubmitting ? (
-                  <div className="w-5 h-5 border-2 border-[#12141C] border-t-transparent rounded-full animate-spin" />
+                  <div className="flex items-center space-x-2">
+                    <div className="w-4 h-4 border-2 border-[#12141C] border-t-transparent rounded-full animate-spin" />
+                    <span>{isEditing ? 'Updating in Google Sheets...' : 'Submitting RSVP...'}</span>
+                  </div>
                 ) : (
-                  <span>Submit RSVP</span>
+                  <div className="flex items-center space-x-2">
+                    {isEditing && <RefreshCw className="w-4 h-4" />}
+                    <span>{isEditing ? 'Update My RSVP' : 'Submit RSVP'}</span>
+                  </div>
                 )}
               </button>
             </div>

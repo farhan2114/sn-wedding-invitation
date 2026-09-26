@@ -38,6 +38,7 @@ export async function submitRsvp(formData) {
 
   // 1. Always save a local copy in browser storage as a reliable safety backup
   try {
+    localStorage.setItem('sn_wedding_rsvp_active', JSON.stringify({ ...formData, submission }));
     const existing = JSON.parse(localStorage.getItem('sn_wedding_rsvp') || '[]');
     existing.push({ ...submission, rawFormData: formData });
     localStorage.setItem('sn_wedding_rsvp', JSON.stringify(existing));
@@ -65,4 +66,16 @@ export async function submitRsvp(formData) {
   }
 
   return { success: true, synced: false };
+}
+
+export function getSavedRsvp() {
+  try {
+    const saved = localStorage.getItem('sn_wedding_rsvp_active');
+    if (saved) {
+      return JSON.parse(saved);
+    }
+  } catch (err) {
+    console.error('Error reading saved RSVP:', err);
+  }
+  return null;
 }

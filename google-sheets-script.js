@@ -51,12 +51,43 @@ function doPost(e) {
     var dietary = attending === 'Yes' ? (data.dietary === 'non-veg' || data.dietary === 'Non-Veg' ? 'Non-Veg' : 'Vegetarian') : 'N/A';
     var wishes = data.wishes || '';
 
-    // Append new row
-    var nextRow = sheet.getLastRow() + 1;
-    if (nextRow < 8) nextRow = 8; // Row 7 is header
+    // =========================================================================
+    // Check if an existing row matches this guest (by Email OR Full Name)
+    // If found, update that EXACT row in place instead of creating a duplicate!
+    // =========================================================================
+    var lastRow = sheet.getLastRow();
+    var targetRow = -1;
+
+    if (lastRow >= 8) {
+      // Row 7 is header, data starts at Row 8
+      // Col 2 (B) = Guest Name, Col 3 (C) = Email
+      var existingRecords = sheet.getRange(8, 2, lastRow - 7, 2).getValues();
+      var cleanEmail = (email || '').toString().trim().toLowerCase();
+      var cleanName = (fullName || '').toString().trim().toLowerCase();
+
+      for (var i = 0; i < existingRecords.length; i++) {
+        var rowName = (existingRecords[i][0] || '').toString().trim().toLowerCase();
+        var rowEmail = (existingRecords[i][1] || '').toString().trim().toLowerCase();
+
+        // 1. Primary match: by email address (case-insensitive)
+        if (cleanEmail && rowEmail && cleanEmail === rowEmail) {
+          targetRow = 8 + i;
+          break;
+        }
+        // 2. Secondary match: by full name if both names are non-empty
+        else if (cleanName && rowName && cleanName === rowName) {
+          targetRow = 8 + i;
+          break;
+        }
+      }
+    }
+
+    var isUpdate = (targetRow !== -1);
+    var finalRow = isUpdate ? targetRow : (lastRow < 8 ? 8 : lastRow + 1);
+    var displayTimestamp = isUpdate ? (timestamp + " (Updated)") : timestamp;
 
     var rowValues = [
-      timestamp,
+      displayTimestamp,
       fullName,
       email,
       attending,
@@ -67,28 +98,34 @@ function doPost(e) {
       wishes
     ];
 
-    sheet.getRange(nextRow, 1, 1, rowValues.length).setValues([rowValues]);
+    sheet.getRange(finalRow, 1, 1, rowValues.length).setValues([rowValues]);
 
-    // Format new row
-    var rowRange = sheet.getRange(nextRow, 1, 1, rowValues.length);
+    // Format row
+    var rowRange = sheet.getRange(finalRow, 1, 1, rowValues.length);
     rowRange.setFontFamily("Montserrat");
     rowRange.setFontSize(10);
     rowRange.setVerticalAlignment("middle");
     rowRange.setBorder(true, true, true, true, true, true, "#D9D9D9", SpreadsheetApp.BorderStyle.SOLID);
     
     // Center numbers and status
-    sheet.getRange(nextRow, 4, 1, 4).setHorizontalAlignment("center");
+    sheet.getRange(finalRow, 4, 1, 4).setHorizontalAlignment("center");
 
     // Color code attending status
-    var statusCell = sheet.getRange(nextRow, 4);
+    var statusCell = sheet.getRange(finalRow, 4);
     if (attending === 'Yes') {
       statusCell.setBackground("#E6F4EA").setFontColor("#137333").setFontWeight("bold");
     } else {
       statusCell.setBackground("#FCE8E6").setFontColor("#C5221F").setFontWeight("bold");
     }
 
+    SpreadsheetApp.flush();
+
     return ContentService
-      .createTextOutput(JSON.stringify({ result: "success", row: nextRow }))
+      .createTextOutput(JSON.stringify({ 
+        result: "success", 
+        action: isUpdate ? "updated" : "created", 
+        row: finalRow 
+      }))
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
