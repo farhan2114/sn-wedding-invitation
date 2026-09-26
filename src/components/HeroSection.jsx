@@ -17,10 +17,10 @@ export default function HeroSection({ onScrollDown }) {
     >
       {/* 1. Room Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Mobile Background: Luxury Hall Ballroom */}
+        {/* Mobile Background: Full couple photo with ballroom & chandeliers */}
         <div
-          className="md:hidden absolute inset-0 bg-cover bg-center transition-all duration-700"
-          style={{ backgroundImage: `url('/assets/hall_background.jpg')` }}
+          className="md:hidden absolute inset-0 bg-cover bg-[center_top] transition-all duration-700"
+          style={{ backgroundImage: `url('/assets/hero_mobile_bg.jpg')` }}
         />
 
         {/* Desktop Background: hall_background.jpg */}
@@ -29,8 +29,10 @@ export default function HeroSection({ onScrollDown }) {
           style={{ backgroundImage: `url('/assets/hall_background.jpg')` }}
         />
         {/* Vignette overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#12141C] via-[#12141C]/50 to-[#12141C]/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#12141C]/60 hidden md:block" />
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#12141C] via-[#12141C]/50 to-[#12141C]/80" />
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#12141C]/60" />
+        {/* Mobile subtle top/bottom scrim for readability */}
+        <div className="md:hidden absolute inset-0 bg-gradient-to-b from-[#12141C]/75 via-transparent to-[#12141C]/90 pointer-events-none" />
       </div>
 
       {/* 2. Top Ceiling Accent: Hanging Golden Tube Pendant Lights (Desktop only) */}
@@ -62,56 +64,50 @@ export default function HeroSection({ onScrollDown }) {
 
       {/* 5. Main Hero Content Layout */}
       {/* 5A. Mobile Layout */}
-      <div className="md:hidden relative z-20 w-full min-h-screen flex flex-col justify-between items-center pt-2.5 xs:pt-3 pb-12 xs:pb-14 px-4 overflow-hidden">
+      <div className="md:hidden relative z-20 w-full min-h-screen flex flex-col justify-between items-center pt-2 xs:pt-3 pb-12 xs:pb-14 px-4 overflow-hidden">
         
-        {/* Top Typography & Logo (Shifted higher up into dark ambient ceiling space) */}
-        <div className="flex flex-col items-center text-center z-20">
-          {/* Logo centered cleanly right above Together lines */}
-          <div className="flex justify-center items-center mb-1">
-            <img
-              src="/assets/sn_logo.png"
-              alt="S & N Logo"
-              className="h-10 xs:h-11 sm:h-13 w-auto object-contain drop-shadow-[0_4px_16px_rgba(210,168,92,0.65)] filter brightness-105"
-            />
+        {/* Top Typography & Logo in a Luxury Transparent Glass Card */}
+        <div className="relative z-20 w-full max-w-[340px] xs:max-w-[360px] mx-auto mt-0.5 sm:mt-2">
+          <div className="w-full bg-[#12141C]/55 backdrop-blur-md border border-[#D2A85C]/35 rounded-[26px] px-5 py-3.5 sm:py-4 shadow-[0_10px_35px_rgba(0,0,0,0.7)] flex flex-col items-center text-center">
+            
+            {/* Logo centered cleanly right above Together lines */}
+            <div className="flex justify-center items-center mb-1">
+              <img
+                src="/assets/sn_logo.png"
+                alt="S & N Logo"
+                className="h-9 xs:h-10 sm:h-12 w-auto object-contain drop-shadow-[0_4px_16px_rgba(210,168,92,0.65)] filter brightness-105"
+              />
+            </div>
+
+            {/* Couple Names under logo */}
+            <p className="font-cormorant text-[12.5px] xs:text-[13.5px] sm:text-[14.5px] font-medium tracking-[0.32em] uppercase text-[#F3EFE4] mt-0.5 mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              Sreeja &amp; Nikhil
+            </p>
+
+            {/* Decorative Gold Diamond Divider */}
+            <div className="flex items-center justify-center space-x-2 w-32 xs:w-38 mx-auto mb-1.5 opacity-85">
+              <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#D2A85C]/80 to-[#D2A85C]" />
+              <div className="w-1.5 h-1.5 rotate-45 border border-[#D2A85C] bg-[#D2A85C]" />
+              <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-[#D2A85C]/80 to-[#D2A85C]" />
+            </div>
+
+            <h1
+              className="font-display text-[38px] xs:text-[42px] sm:text-[48px] tracking-wide font-normal leading-[1.03] mb-1"
+              style={{
+                background: 'linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 60%, #F8ECD2 80%, #DFC07A 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                filter: 'drop-shadow(0 2px 10px rgba(0, 0, 0, 0.95))',
+                display: 'inline-block'
+              }}
+            >
+              Sangeet &amp;<br />
+              Cocktails
+            </h1>
+            <p className="text-[8.5px] xs:text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.24em] text-[#E7CE9C] font-medium leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+              A night of music, dance,<br />celebration and love
+            </p>
           </div>
-
-          {/* Couple Names under logo */}
-          <p className="font-cormorant text-[13px] xs:text-[14px] sm:text-[15px] font-medium tracking-[0.32em] uppercase text-[#F3EFE4] mt-1 mb-1.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-            Sreeja &amp; Nikhil
-          </p>
-
-          {/* Decorative Gold Diamond Divider */}
-          <div className="flex items-center justify-center space-x-2 w-36 xs:w-42 mx-auto mb-2 opacity-85">
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#D2A85C]/80 to-[#D2A85C]" />
-            <div className="w-1.5 h-1.5 rotate-45 border border-[#D2A85C] bg-[#D2A85C]" />
-            <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-[#D2A85C]/80 to-[#D2A85C]" />
-          </div>
-
-          <h1
-            className="font-display text-[42px] xs:text-[46px] sm:text-[52px] tracking-wide font-normal leading-[1.03] mb-1.5"
-            style={{
-              background: 'linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 60%, #F8ECD2 80%, #DFC07A 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              filter: 'drop-shadow(0 2px 10px rgba(0, 0, 0, 0.95))',
-              display: 'inline-block'
-            }}
-          >
-            Sangeet &amp;<br />
-            Cocktails
-          </h1>
-          <p className="text-[9px] xs:text-[9.5px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.24em] text-white font-medium leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
-            A night of music, dance,<br />celebration and love
-          </p>
-        </div>
-
-        {/* Center-Right: Couple Cutout for Mobile */}
-        <div className="absolute right-0 xs:right-1 sm:right-4 bottom-24 xs:bottom-28 z-20 pointer-events-none flex justify-end items-end">
-          <img
-            src="/assets/couple_cutout.png"
-            alt="Sreeja & Nikhil"
-            className="h-[46vh] max-h-[420px] xs:max-h-[460px] w-auto object-contain object-bottom drop-shadow-[0_12px_30px_rgba(0,0,0,0.95)]"
-          />
         </div>
 
         {/* Center-Left: Glowing Neon "Let's Celebrate" script text (click to scroll down) */}
