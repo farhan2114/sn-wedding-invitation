@@ -85,8 +85,6 @@ export default function App() {
       <Header
         activeSection={activeSection}
         onNavigate={scrollToSection}
-        isAudioPlaying={isAudioPlaying}
-        onToggleAudio={handleToggleAudio}
       />
 
       {/* Main Flow: Seamless single-page scrolling */}

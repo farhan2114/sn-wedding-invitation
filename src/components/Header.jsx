@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
-export default function Header({ activeSection, onNavigate, isAudioPlaying, onToggleAudio }) {
+export default function Header({ activeSection, onNavigate }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -97,27 +97,8 @@ export default function Header({ activeSection, onNavigate, isAudioPlaying, onTo
             ))}
           </nav>
 
-          {/* Right-most Action Icons: Audio Toggle & Hamburger */}
-          <div className="flex items-center space-x-3 sm:space-x-5">
-            {/* Audio Toggle */}
-            <button
-              onClick={onToggleAudio}
-              className="text-[#D2A85C] hover:text-[#E7CE9C] p-2 rounded-full hover:bg-white/5 transition-all outline-none focus:outline-none focus-visible:outline-none focus:ring-0"
-              title={isAudioPlaying ? 'Mute Atmosphere Audio' : 'Play Atmosphere Audio'}
-              aria-label="Toggle Atmosphere Audio"
-            >
-              {isAudioPlaying ? (
-                <div className="flex items-center space-x-1">
-                  <span className="w-1 h-3 bg-[#D2A85C] animate-pulse rounded-full"></span>
-                  <span className="w-1 h-4 bg-[#D2A85C] animate-pulse delay-75 rounded-full"></span>
-                  <span className="w-1 h-2 bg-[#D2A85C] animate-pulse delay-150 rounded-full"></span>
-                  <Volume2 className="w-4 h-4 ml-1 text-[#D2A85C]" />
-                </div>
-              ) : (
-                <VolumeX className="w-4 h-4 text-[#A9A6A0] hover:text-[#D2A85C]" />
-              )}
-            </button>
-
+          {/* Right-most Action Icon: Hamburger Menu */}
+          <div className="flex items-center">
             {/* 3-bar Hamburger Icon */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}

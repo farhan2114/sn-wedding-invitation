@@ -17,10 +17,14 @@ export default function HeroSection({ onScrollDown }) {
     >
       {/* 1. Room Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Mobile Background: Full couple photo with ballroom & chandeliers */}
+        {/* Mobile Background: Couple photo cut cleanly at the bottom (floor/shoes cropped out) */}
         <div
-          className="md:hidden absolute inset-0 bg-cover bg-[center_top] transition-all duration-700"
-          style={{ backgroundImage: `url('/assets/hero_mobile_bg.jpg')` }}
+          className="md:hidden absolute inset-x-0 top-0 h-[82%] bg-cover bg-[center_top] transition-all duration-700 pointer-events-none"
+          style={{
+            backgroundImage: `url('/assets/hero_mobile_bg.jpg')`,
+            maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
+          }}
         />
 
         {/* Desktop Background: hall_background.jpg */}
@@ -64,11 +68,11 @@ export default function HeroSection({ onScrollDown }) {
 
       {/* 5. Main Hero Content Layout */}
       {/* 5A. Mobile Layout */}
-      <div className="md:hidden relative z-20 w-full min-h-screen flex flex-col justify-between items-center pt-2 xs:pt-3 pb-12 xs:pb-14 px-4 overflow-hidden">
+      <div className="md:hidden relative z-20 w-full min-h-screen flex flex-col justify-between items-center pt-2 xs:pt-3 pb-20 xs:pb-24 px-4 overflow-hidden">
         
-        {/* Top Typography & Logo in a Luxury Transparent Glass Card (No blur so background photo is 100% crisp) */}
+        {/* Top Typography & Logo in a Luxury Frosted Glass Card */}
         <div className="relative z-20 w-full max-w-[340px] xs:max-w-[360px] mx-auto mt-0.5 sm:mt-2">
-          <div className="w-full bg-[#12141C]/25 border border-[#D2A85C]/35 rounded-[26px] px-5 py-3.5 sm:py-4 shadow-[0_10px_35px_rgba(0,0,0,0.6)] flex flex-col items-center text-center">
+          <div className="w-full bg-[#12141C]/45 backdrop-blur-md border border-[#D2A85C]/40 rounded-[26px] px-5 py-3.5 sm:py-4 shadow-[0_12px_40px_rgba(0,0,0,0.7)] flex flex-col items-center text-center">
             
             {/* Logo centered cleanly right above Together lines */}
             <div className="flex justify-center items-center mb-1">
@@ -113,7 +117,7 @@ export default function HeroSection({ onScrollDown }) {
         {/* Center-Left: Glowing Neon "Let's Celebrate" script text (click to scroll down) */}
         <button
           onClick={handleScroll}
-          className="absolute left-3 sm:left-6 top-[62%] -translate-y-1/2 z-30 font-script text-[38px] xs:text-[42px] sm:text-[48px] text-[#FFF4D6] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none text-left"
+          className="absolute left-3 sm:left-6 top-[54%] -translate-y-1/2 z-30 font-script text-[36px] xs:text-[40px] sm:text-[46px] text-[#FFF4D6] -rotate-12 transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer outline-none focus:outline-none select-none text-left"
           style={{
             textShadow: '0 0 10px rgba(255, 235, 180, 0.95), 0 0 25px rgba(210, 168, 92, 0.9), 0 0 45px rgba(210, 168, 92, 0.75)',
             filter: 'drop-shadow(0 0 15px rgba(210, 168, 92, 0.9))'
@@ -123,14 +127,16 @@ export default function HeroSection({ onScrollDown }) {
           Let's<br />Celebrate
         </button>
 
-        {/* Bottom Date, Venue & Direct "Scroll Down" Indicator */}
-        <div className="flex flex-col items-center text-center z-20 w-full mb-3 xs:mb-4">
-          <p className="text-[11px] sm:text-xs font-sans-ui uppercase tracking-[0.24em] text-[#F3EFE4] font-medium mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-            Friday, November 20, 2026
-          </p>
-          <p className="text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.2em] text-[#A9A6A0] mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-            The Crown Venue, Dallas, TX
-          </p>
+        {/* Bottom Date, Venue & Direct "Scroll Down" Indicator (Brought UP with a sleek glass card) */}
+        <div className="flex flex-col items-center text-center z-20 w-full mb-6 xs:mb-8">
+          <div className="py-2.5 px-6 rounded-2xl bg-[#12141C]/60 backdrop-blur-md border border-[#D2A85C]/35 mb-3.5 shadow-[0_8px_30px_rgba(0,0,0,0.7)] flex flex-col items-center text-center max-w-[320px] w-full">
+            <p className="text-[11.5px] sm:text-xs font-sans-ui uppercase tracking-[0.24em] text-[#F3EFE4] font-medium mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+              Friday, November 20, 2026
+            </p>
+            <p className="text-[10px] sm:text-[10.5px] font-sans-ui uppercase tracking-[0.2em] text-[#D2A85C] drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+              The Crown Venue, Dallas, TX
+            </p>
+          </div>
 
           {/* Direct Scroll Down Prompt */}
           <button
@@ -138,7 +144,7 @@ export default function HeroSection({ onScrollDown }) {
             className="flex flex-col items-center space-y-1 text-[#E7CE9C] hover:text-white transition-colors cursor-pointer outline-none focus:outline-none select-none active:scale-95"
             aria-label="Scroll Down to Details"
           >
-            <span className="text-[9.5px] uppercase tracking-[0.28em] text-[#D2A85C] font-sans-ui">
+            <span className="text-[10px] uppercase tracking-[0.28em] text-[#D2A85C] font-sans-ui font-medium">
               Scroll Down
             </span>
             <ChevronDown className="w-4 h-4 text-[#D2A85C] animate-bounce" />
