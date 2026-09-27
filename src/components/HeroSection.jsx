@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronDown, Sparkles } from 'lucide-react';
+import coupleCutout from '../assets/couple_cutout.png';
 
 export default function HeroSection({ onScrollDown }) {
   const handleScroll = () => {
@@ -159,7 +160,7 @@ export default function HeroSection({ onScrollDown }) {
         <div className="w-full md:w-1/2 flex justify-center md:justify-start items-end relative order-2 md:order-1 mt-6 md:mt-0 self-end pb-0 mb-0">
           <div className="relative flex items-end justify-center md:justify-start w-full">
             <img
-              src="/assets/couple_cutout.png"
+              src={coupleCutout}
               alt="S & N - The Couple"
               className="h-[62vh] sm:h-[72vh] md:h-[84vh] lg:h-[88vh] max-h-[820px] w-auto object-contain object-bottom drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)] filter contrast-[1.03]"
             />
