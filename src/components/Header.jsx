@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
-export default function Header({ activeSection, onNavigate, isAudioPlaying, onToggleAudio }) {
+export default function Header({ activeSection, onNavigate }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -97,41 +97,8 @@ export default function Header({ activeSection, onNavigate, isAudioPlaying, onTo
             ))}
           </nav>
 
-          {/* Right-most Action Icons: Audio Toggle & Hamburger Menu */}
-          <div className="flex items-center space-x-2.5 sm:space-x-4">
-            {/* Small Mute button with "Click to play music" option for both desktop & mobile */}
-            <button
-              onClick={onToggleAudio}
-              className={`flex items-center space-x-1.5 py-1 px-2.5 sm:px-3 rounded-full border transition-all duration-300 outline-none focus:outline-none cursor-pointer ${
-                isAudioPlaying
-                  ? 'bg-[#181D29]/80 border-[#D2A85C]/40 text-[#D2A85C] hover:bg-[#181D29] hover:border-[#D2A85C]'
-                  : 'bg-[#D2A85C]/15 border-[#D2A85C]/70 text-[#F3EFE4] hover:bg-[#D2A85C]/25 shadow-[0_0_12px_rgba(210,168,92,0.35)]'
-              }`}
-              title={isAudioPlaying ? 'Mute Music' : 'Click to play music'}
-              aria-label={isAudioPlaying ? 'Mute Music' : 'Click to play music'}
-            >
-              {isAudioPlaying ? (
-                <>
-                  <div className="flex items-center space-x-0.5">
-                    <span className="w-0.5 h-2 bg-[#D2A85C] animate-pulse rounded-full"></span>
-                    <span className="w-0.5 h-3 bg-[#D2A85C] animate-pulse delay-75 rounded-full"></span>
-                    <span className="w-0.5 h-1.5 bg-[#D2A85C] animate-pulse delay-150 rounded-full"></span>
-                  </div>
-                  <Volume2 className="w-3.5 h-3.5 text-[#D2A85C]" />
-                  <span className="text-[10px] uppercase tracking-wider text-[#D2A85C] font-sans-ui font-medium">
-                    Mute
-                  </span>
-                </>
-              ) : (
-                <>
-                  <VolumeX className="w-3.5 h-3.5 text-[#D2A85C] animate-bounce" />
-                  <span className="text-[10px] sm:text-[10.5px] uppercase tracking-wider text-[#F3EFE4] font-medium font-sans-ui whitespace-nowrap">
-                    Click to play music
-                  </span>
-                </>
-              )}
-            </button>
-
+          {/* Right-most Action Icon: Hamburger Menu */}
+          <div className="flex items-center">
             {/* 3-bar Hamburger Icon */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}

@@ -1,30 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import DetailsSection from './components/DetailsSection';
 import RsvpSection from './components/RsvpSection';
 import ThankYouSection from './components/ThankYouSection';
 import AmbientParticles from './components/AmbientParticles';
-import AudioAtmosphere from './components/AudioAtmosphere';
+import AudioAtmosphere, { toggleGlobalAudio } from './components/AudioAtmosphere';
+import MusicButton from './components/MusicButton';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('invitation');
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [rsvpSubmission, setRsvpSubmission] = useState(null);
   const [editingRsvpData, setEditingRsvpData] = useState(null);
-  const toggleAudioRef = useRef(null);
 
-  const handleToggleAudio = () => {
-    const audio = window.__weddingAudio;
-    if (audio) {
-      if (audio.paused) {
-        audio.play().then(() => setIsAudioPlaying(true)).catch(() => {});
-      } else {
-        audio.pause();
-        setIsAudioPlaying(false);
-      }
-    }
-  };
 
   const handleEditRsvp = () => {
     if (rsvpSubmission) {
@@ -82,17 +71,12 @@ export default function App() {
       <AmbientParticles />
 
       {/* Background Audio Player */}
-      <AudioAtmosphere
-        onPlayStateChange={setIsAudioPlaying}
-        toggleRef={toggleAudioRef}
-      />
+      <AudioAtmosphere onPlayStateChange={setIsAudioPlaying} />
 
       {/* Sticky Top Header */}
       <Header
         activeSection={activeSection}
         onNavigate={scrollToSection}
-        isAudioPlaying={isAudioPlaying}
-        onToggleAudio={handleToggleAudio}
       />
 
       {/* Main Flow: Seamless single-page scrolling */}
@@ -115,6 +99,12 @@ export default function App() {
           onEditRsvp={handleEditRsvp}
         />
       </main>
+
+      {/* Floating Bottom Music & Mute Control (for both mobile and desktop) */}
+      <MusicButton
+        isPlaying={isAudioPlaying}
+        onToggle={toggleGlobalAudio}
+      />
     </div>
   );
 }
