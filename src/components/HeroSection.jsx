@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import coupleCutout from '../assets/couple_cutout.png';
+import heroMobileBg from '../assets/hero_mobile_bg.jpg';
 
 export default function HeroSection({ onScrollDown }) {
   const handleScroll = () => {
@@ -22,7 +23,7 @@ export default function HeroSection({ onScrollDown }) {
         <div
           className="md:hidden absolute inset-x-0 top-0 h-[82%] bg-cover bg-[center_top] transition-all duration-700 pointer-events-none"
           style={{
-            backgroundImage: `url('/assets/hero_mobile_bg.jpg')`,
+            backgroundImage: `url(${heroMobileBg})`,
             maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
             WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
           }}
