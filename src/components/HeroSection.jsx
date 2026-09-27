@@ -31,8 +31,8 @@ export default function HeroSection({ onScrollDown }) {
         {/* Vignette overlay */}
         <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#12141C] via-[#12141C]/50 to-[#12141C]/80" />
         <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#12141C]/60" />
-        {/* Mobile subtle top/bottom scrim for readability */}
-        <div className="md:hidden absolute inset-0 bg-gradient-to-b from-[#12141C]/75 via-transparent to-[#12141C]/90 pointer-events-none" />
+        {/* Mobile subtle bottom scrim only for bottom text readability, keeping the couple and hall 100% crisp and unblurred */}
+        <div className="md:hidden absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#12141C]/85 pointer-events-none" />
       </div>
 
       {/* 2. Top Ceiling Accent: Hanging Golden Tube Pendant Lights (Desktop only) */}
@@ -66,9 +66,9 @@ export default function HeroSection({ onScrollDown }) {
       {/* 5A. Mobile Layout */}
       <div className="md:hidden relative z-20 w-full min-h-screen flex flex-col justify-between items-center pt-2 xs:pt-3 pb-12 xs:pb-14 px-4 overflow-hidden">
         
-        {/* Top Typography & Logo in a Luxury Transparent Glass Card */}
+        {/* Top Typography & Logo in a Luxury Transparent Glass Card (No blur so background photo is 100% crisp) */}
         <div className="relative z-20 w-full max-w-[340px] xs:max-w-[360px] mx-auto mt-0.5 sm:mt-2">
-          <div className="w-full bg-[#12141C]/55 backdrop-blur-md border border-[#D2A85C]/35 rounded-[26px] px-5 py-3.5 sm:py-4 shadow-[0_10px_35px_rgba(0,0,0,0.7)] flex flex-col items-center text-center">
+          <div className="w-full bg-[#12141C]/25 border border-[#D2A85C]/35 rounded-[26px] px-5 py-3.5 sm:py-4 shadow-[0_10px_35px_rgba(0,0,0,0.6)] flex flex-col items-center text-center">
             
             {/* Logo centered cleanly right above Together lines */}
             <div className="flex justify-center items-center mb-1">

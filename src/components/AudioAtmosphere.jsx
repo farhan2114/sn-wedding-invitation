@@ -66,8 +66,10 @@ export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
     };
 
     tryAutoplay();
+    window.addEventListener('load', tryAutoplay);
+    document.addEventListener('DOMContentLoaded', tryAutoplay);
 
-    // 2. Global unlock on any touch / swipe / scroll / click
+    // 2. Global capture-phase unlock on the very first touch / swipe / scroll / click anywhere
     const unlock = () => {
       if (audioRef.current && audioRef.current.paused) {
         audioRef.current
@@ -83,27 +85,27 @@ export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
     };
 
     const cleanupListeners = () => {
-      window.removeEventListener('pointerdown', unlock);
-      window.removeEventListener('pointerup', unlock);
-      window.removeEventListener('touchstart', unlock);
-      window.removeEventListener('touchend', unlock);
-      window.removeEventListener('click', unlock);
-      window.removeEventListener('scroll', unlock);
-      window.removeEventListener('wheel', unlock);
-      window.removeEventListener('keydown', unlock);
+      const targets = [document, document.body, window];
+      const events = ['touchstart', 'touchend', 'pointerdown', 'pointerup', 'click', 'scroll', 'wheel'];
+      targets.forEach((target) => {
+        if (target) {
+          events.forEach((evt) => target.removeEventListener(evt, unlock, true));
+        }
+      });
     };
 
-    window.addEventListener('pointerdown', unlock, { passive: true });
-    window.addEventListener('pointerup', unlock, { passive: true });
-    window.addEventListener('touchstart', unlock, { passive: true });
-    window.addEventListener('touchend', unlock, { passive: true });
-    window.addEventListener('click', unlock, { passive: true });
-    window.addEventListener('scroll', unlock, { passive: true });
-    window.addEventListener('wheel', unlock, { passive: true });
-    window.addEventListener('keydown', unlock, { passive: true });
+    const targets = [document, document.body, window];
+    const events = ['touchstart', 'touchend', 'pointerdown', 'pointerup', 'click', 'scroll', 'wheel'];
+    targets.forEach((target) => {
+      if (target) {
+        events.forEach((evt) => target.addEventListener(evt, unlock, { capture: true, passive: true }));
+      }
+    });
 
     return () => {
       cleanupListeners();
+      window.removeEventListener('load', tryAutoplay);
+      document.removeEventListener('DOMContentLoaded', tryAutoplay);
       audio.removeEventListener('play', handlePlay);
       audio.removeEventListener('playing', handlePlay);
       audio.removeEventListener('pause', handlePause);
@@ -119,7 +121,15 @@ export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
       loop
       playsInline
       preload="auto"
-      className="hidden"
+      style={{
+        position: 'fixed',
+        top: -9999,
+        left: -9999,
+        width: 1,
+        height: 1,
+        opacity: 0.01,
+        pointerEvents: 'none',
+      }}
     />
   );
 }

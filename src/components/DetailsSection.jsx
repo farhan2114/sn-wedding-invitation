@@ -68,11 +68,13 @@ export default function DetailsSection() {
             </p>
           </div>
 
-          {/* 4 Detail Rows with Bare Gold Icons */}
-          <div className="flex flex-col space-y-3 mb-3.5 text-left">
+          {/* 4 Detail Rows with Circular Badge Gold Outline Icons (matching design) */}
+          <div className="flex flex-col space-y-3.5 mb-3.5 text-left">
             {/* 1. Date */}
-            <div className="flex items-start space-x-3.5">
-              <Calendar className="w-5 h-5 text-[#DFC07A] shrink-0 mt-0.5" strokeWidth={1.8} />
+            <div className="flex items-center space-x-3.5">
+              <div className="w-10 h-10 rounded-full bg-[#181D29]/90 border border-[#2E374A] flex items-center justify-center shrink-0 shadow-md">
+                <Calendar className="w-5 h-5 text-[#DFC07A]" strokeWidth={1.8} />
+              </div>
               <div>
                 <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">Friday</p>
                 <p className="text-[12.5px] text-[#A9A6A0] leading-snug mt-0.5">November 20, 2026</p>
@@ -81,13 +83,17 @@ export default function DetailsSection() {
 
             {/* 2. Time */}
             <div className="flex items-center space-x-3.5">
-              <Clock className="w-5 h-5 text-[#DFC07A] shrink-0" strokeWidth={1.8} />
+              <div className="w-10 h-10 rounded-full bg-[#181D29]/90 border border-[#2E374A] flex items-center justify-center shrink-0 shadow-md">
+                <Clock className="w-5 h-5 text-[#DFC07A]" strokeWidth={1.8} />
+              </div>
               <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">6:00 PM Onwards</p>
             </div>
 
             {/* 3. Venue */}
-            <div className="flex items-start space-x-3.5">
-              <MapPin className="w-5 h-5 text-[#DFC07A] fill-[#DFC07A] shrink-0 mt-0.5" />
+            <div className="flex items-center space-x-3.5">
+              <div className="w-10 h-10 rounded-full bg-[#181D29]/90 border border-[#2E374A] flex items-center justify-center shrink-0 shadow-md">
+                <MapPin className="w-5 h-5 text-[#DFC07A]" strokeWidth={1.8} />
+              </div>
               <div>
                 <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">The Crown Venue,</p>
                 <p className="text-[12.5px] text-[#A9A6A0] leading-snug mt-0.5">10841 Composite Dr, Dallas, TX 75220</p>
@@ -96,13 +102,20 @@ export default function DetailsSection() {
 
             {/* 4. Attire */}
             <div className="flex items-center space-x-3.5">
-              <svg
-                className="w-5 h-5 text-[#DFC07A] shrink-0 fill-current"
-                viewBox="0 0 24 24"
-              >
-                <path d="M9 2.5 L10.5 2.5 L11.2 6.5 L12 3 L12.8 6.5 L13.5 2.5 L15 2.5 L14.2 8.5 L9.8 8.5 Z" />
-                <path d="M9.6 9.5 L14.4 9.5 L17.2 21.5 L14 21.5 L12.5 13 L12 13 L11.5 13 L10 21.5 L6.8 21.5 Z" />
-              </svg>
+              <div className="w-10 h-10 rounded-full bg-[#181D29]/90 border border-[#2E374A] flex items-center justify-center shrink-0 shadow-md">
+                <svg
+                  className="w-5 h-5 text-[#DFC07A]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 2a3 3 0 0 0-3 3c0 .8.3 1.5.8 2.1L2 14v1a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-1l-7.8-6.9c.5-.6.8-1.3.8-2.1a3 3 0 0 0-3-3z" />
+                  <path d="M6 16l2 6h8l2-6" />
+                </svg>
+              </div>
               <p className="text-[14.5px] font-medium text-[#F3EFE4] leading-snug">Indo-Western or Cocktail Attire</p>
             </div>
           </div>
