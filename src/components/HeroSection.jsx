@@ -1,7 +1,8 @@
 import React from 'react';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import coupleCutout from '../assets/couple_cutout.png';
-import heroMobileBg from '../assets/hero_mobile_bg.jpg';
+import heroMobileHall from '../assets/hero_mobile_hall.jpg';
+import heroMobileCouple from '../assets/hero_mobile_couple.png';
 
 export default function HeroSection({ onScrollDown }) {
   const handleScroll = () => {
@@ -19,11 +20,21 @@ export default function HeroSection({ onScrollDown }) {
     >
       {/* 1. Room Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Mobile Background: Couple photo cut cleanly at the bottom (floor/shoes cropped out) */}
+        {/* Mobile Background Asset 1: Ballroom Hall Background */}
         <div
           className="md:hidden absolute inset-x-0 top-0 h-[82%] bg-cover bg-[center_top] transition-all duration-700 pointer-events-none"
           style={{
-            backgroundImage: `url(${heroMobileBg})`,
+            backgroundImage: `url(${heroMobileHall})`,
+            maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
+          }}
+        />
+
+        {/* Mobile Background Asset 2: Couple Cutout positioned exactly as in previous background */}
+        <div
+          className="md:hidden absolute inset-x-0 top-0 h-[82%] bg-cover bg-[center_top] transition-all duration-700 pointer-events-none"
+          style={{
+            backgroundImage: `url(${heroMobileCouple})`,
             maskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)',
             WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 75%, transparent 100%)'
           }}
