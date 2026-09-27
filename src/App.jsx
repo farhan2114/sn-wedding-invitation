@@ -15,8 +15,14 @@ export default function App() {
   const toggleAudioRef = useRef(null);
 
   const handleToggleAudio = () => {
-    if (toggleAudioRef.current) {
-      toggleAudioRef.current();
+    const audio = window.__weddingAudio;
+    if (audio) {
+      if (audio.paused) {
+        audio.play().then(() => setIsAudioPlaying(true)).catch(() => {});
+      } else {
+        audio.pause();
+        setIsAudioPlaying(false);
+      }
     }
   };
 
@@ -85,6 +91,8 @@ export default function App() {
       <Header
         activeSection={activeSection}
         onNavigate={scrollToSection}
+        isAudioPlaying={isAudioPlaying}
+        onToggleAudio={handleToggleAudio}
       />
 
       {/* Main Flow: Seamless single-page scrolling */}
