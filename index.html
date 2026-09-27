@@ -35,8 +35,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@200;300;400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-[#12141C] text-[#F3EFE4] antialiased selection:bg-[#D2A85C]/30 selection:text-[#E7CE9C] overflow-x-hidden">
     <div id="root"></div>
+    <script>
+      (function() {
+        try {
+          var audio = new Audio('/assets/music.mp3');
+          audio.loop = true;
+          audio.volume = 0.55;
+          audio.preload = 'auto';
+          window.__weddingAudio = audio;
+          
+          function play() {
+            if (audio && audio.paused) {
+              audio.play().catch(function() {});
+            }
+          }
+          
+          play();
+          window.addEventListener('load', play);
+          window.addEventListener('pageshow', play);
+          document.addEventListener('DOMContentLoaded', play);
+          
+          var events = ['click', 'touchstart', 'touchend', 'touchmove', 'scroll', 'pointerdown'];
+          events.forEach(function(e) {
+            window.addEventListener(e, play, { capture: true, passive: true });
+            document.addEventListener(e, play, { capture: true, passive: true });
+          });
+        } catch(e) {}
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

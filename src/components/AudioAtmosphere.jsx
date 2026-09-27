@@ -14,10 +14,16 @@ export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    audio.volume = DEFAULT_VOLUME;
+    // Connect to early initialized audio from index.html, or fallback to new Audio
+    let audio = window.__weddingAudio;
+    if (!audio) {
+      audio = new Audio(AUDIO_SRC);
+      audio.loop = true;
+      audio.volume = DEFAULT_VOLUME;
+      audio.preload = 'auto';
+      window.__weddingAudio = audio;
+    }
+    audioRef.current = audio;
 
     const handlePlay = () => onPlayStateChange?.(true);
     const handlePause = () => onPlayStateChange?.(false);
@@ -27,85 +33,53 @@ export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
     audio.addEventListener('pause', handlePause);
     audio.addEventListener('ended', handlePause);
 
-    // Provide imperative toggle handle to parent
-    if (toggleRef) {
-      const toggle = () => {
-        if (!audioRef.current) return;
-        if (audioRef.current.paused) {
-          audioRef.current.play().catch(() => {});
-        } else {
-          audioRef.current.pause();
-        }
-      };
-      toggle.play = () => {
-        if (audioRef.current && audioRef.current.paused) {
-          audioRef.current.play().catch(() => {});
-        }
-      };
-      toggle.pause = () => {
-        if (audioRef.current && !audioRef.current.paused) {
-          audioRef.current.pause();
-        }
-      };
-      toggleRef.current = toggle;
+    // Sync current state
+    if (!audio.paused) {
+      onPlayStateChange?.(true);
+    } else {
+      audio.play().then(() => onPlayStateChange?.(true)).catch(() => {});
     }
 
-    // 1. Attempt autoplay immediately when website opens
+    // 1. Attempt autoplay continuously
     const tryAutoplay = () => {
-      if (!audioRef.current) return;
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            onPlayStateChange?.(true);
-          })
-          .catch(() => {
-            onPlayStateChange?.(false);
-          });
+      if (!audio) return;
+      if (audio.paused) {
+        audio.play().then(() => onPlayStateChange?.(true)).catch(() => {});
       }
     };
 
-    tryAutoplay();
     window.addEventListener('load', tryAutoplay);
     window.addEventListener('pageshow', tryAutoplay);
-    document.addEventListener('DOMContentLoaded', tryAutoplay);
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') tryAutoplay();
     });
     audio.addEventListener('canplay', tryAutoplay);
     audio.addEventListener('canplaythrough', tryAutoplay);
-    audio.addEventListener('loadeddata', tryAutoplay);
 
-    // Continuous retry loop for initial 10 seconds to catch early readiness
+    // Continuous retry loop for initial 8 seconds
     let retryCount = 0;
     const retryInterval = setInterval(() => {
       retryCount++;
-      if (audioRef.current && audioRef.current.paused) {
-        audioRef.current
-          .play()
-          .then(() => {
-            onPlayStateChange?.(true);
-            clearInterval(retryInterval);
-          })
-          .catch(() => {});
-      } else if (audioRef.current && !audioRef.current.paused) {
+      if (audio && audio.paused) {
+        audio.play().then(() => {
+          onPlayStateChange?.(true);
+          clearInterval(retryInterval);
+        }).catch(() => {});
+      } else if (audio && !audio.paused) {
         clearInterval(retryInterval);
       }
-      if (retryCount > 50) {
+      if (retryCount > 40) {
         clearInterval(retryInterval);
       }
     }, 200);
 
-    // 2. Global capture-phase unlock on any early interaction (touch, move, scroll, swipe)
+    // 2. Global capture-phase unlock on any early interaction
     const unlock = () => {
-      if (audioRef.current && audioRef.current.paused) {
-        audioRef.current
-          .play()
-          .then(() => {
-            onPlayStateChange?.(true);
-            cleanupListeners();
-          })
-          .catch(() => {});
+      if (audio && audio.paused) {
+        audio.play().then(() => {
+          onPlayStateChange?.(true);
+          cleanupListeners();
+        }).catch(() => {});
       } else {
         cleanupListeners();
       }
@@ -135,10 +109,6 @@ export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
       cleanupListeners();
       window.removeEventListener('load', tryAutoplay);
       window.removeEventListener('pageshow', tryAutoplay);
-      document.removeEventListener('DOMContentLoaded', tryAutoplay);
-      audio.removeEventListener('canplay', tryAutoplay);
-      audio.removeEventListener('canplaythrough', tryAutoplay);
-      audio.removeEventListener('loadeddata', tryAutoplay);
       audio.removeEventListener('play', handlePlay);
       audio.removeEventListener('playing', handlePlay);
       audio.removeEventListener('pause', handlePause);
@@ -146,24 +116,6 @@ export default function AudioAtmosphere({ onPlayStateChange, toggleRef }) {
     };
   }, []);
 
-  return (
-    <audio
-      ref={audioRef}
-      src={AUDIO_SRC}
-      autoPlay
-      loop
-      playsInline
-      preload="auto"
-      style={{
-        position: 'fixed',
-        top: -9999,
-        left: -9999,
-        width: 1,
-        height: 1,
-        opacity: 0.01,
-        pointerEvents: 'none',
-      }}
-    />
-  );
+  return null;
 }
 

@@ -68,35 +68,35 @@ export default function HeroSection({ onScrollDown }) {
 
       {/* 5. Main Hero Content Layout */}
       {/* 5A. Mobile Layout */}
-      <div className="md:hidden relative z-20 w-full min-h-screen flex flex-col justify-between items-center pt-2 xs:pt-3 pb-20 xs:pb-24 px-4 overflow-hidden">
+      <div className="md:hidden relative z-20 w-full min-h-screen flex flex-col justify-between items-center pt-1 xs:pt-1.5 pb-20 xs:pb-24 px-4 overflow-hidden">
         
-        {/* Top Typography & Logo in a Luxury Frosted Glass Card */}
-        <div className="relative z-20 w-full max-w-[340px] xs:max-w-[360px] mx-auto mt-0.5 sm:mt-2">
-          <div className="w-full bg-[#12141C]/45 backdrop-blur-md border border-[#D2A85C]/40 rounded-[26px] px-5 py-3.5 sm:py-4 shadow-[0_12px_40px_rgba(0,0,0,0.7)] flex flex-col items-center text-center">
+        {/* Top Typography & Logo in a Luxury Compact Glass Card (Lifted high to clear groom's head) */}
+        <div className="relative z-20 w-full max-w-[325px] xs:max-w-[345px] mx-auto mt-0">
+          <div className="w-full bg-[#12141C]/45 backdrop-blur-md border border-[#D2A85C]/40 rounded-[20px] px-4 py-2.5 xs:py-3 shadow-[0_10px_35px_rgba(0,0,0,0.7)] flex flex-col items-center text-center">
             
             {/* Logo centered cleanly right above Together lines */}
-            <div className="flex justify-center items-center mb-1">
+            <div className="flex justify-center items-center mb-0.5">
               <img
                 src="/assets/sn_logo.png"
                 alt="S & N Logo"
-                className="h-9 xs:h-10 sm:h-12 w-auto object-contain drop-shadow-[0_4px_16px_rgba(210,168,92,0.65)] filter brightness-105"
+                className="h-7 xs:h-8 w-auto object-contain drop-shadow-[0_3px_12px_rgba(210,168,92,0.65)] filter brightness-105"
               />
             </div>
 
             {/* Couple Names under logo */}
-            <p className="font-cormorant text-[12.5px] xs:text-[13.5px] sm:text-[14.5px] font-medium tracking-[0.32em] uppercase text-[#F3EFE4] mt-0.5 mb-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+            <p className="font-cormorant text-[11.5px] xs:text-[12.5px] font-medium tracking-[0.28em] uppercase text-[#F3EFE4] mb-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
               Sreeja &amp; Nikhil
             </p>
 
             {/* Decorative Gold Diamond Divider */}
-            <div className="flex items-center justify-center space-x-2 w-32 xs:w-38 mx-auto mb-1.5 opacity-85">
+            <div className="flex items-center justify-center space-x-2 w-24 xs:w-28 mx-auto mb-1 opacity-80">
               <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#D2A85C]/80 to-[#D2A85C]" />
               <div className="w-1.5 h-1.5 rotate-45 border border-[#D2A85C] bg-[#D2A85C]" />
               <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-[#D2A85C]/80 to-[#D2A85C]" />
             </div>
 
             <h1
-              className="font-display text-[38px] xs:text-[42px] sm:text-[48px] tracking-wide font-normal leading-[1.03] mb-1"
+              className="font-display text-[30px] xs:text-[34px] tracking-wide font-normal leading-[1.01] mb-0.5"
               style={{
                 background: 'linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 60%, #F8ECD2 80%, #DFC07A 100%)',
                 WebkitBackgroundClip: 'text',
@@ -108,7 +108,7 @@ export default function HeroSection({ onScrollDown }) {
               Sangeet &amp;<br />
               Cocktails
             </h1>
-            <p className="text-[8.5px] xs:text-[9.5px] sm:text-[10px] font-sans-ui uppercase tracking-[0.24em] text-[#E7CE9C] font-medium leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+            <p className="text-[7.5px] xs:text-[8.5px] font-sans-ui uppercase tracking-[0.22em] text-[#E7CE9C] font-medium leading-snug drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
               A night of music, dance,<br />celebration and love
             </p>
           </div>
