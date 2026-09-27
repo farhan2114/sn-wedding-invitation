@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import DetailsSection from './components/DetailsSection';
@@ -7,13 +7,13 @@ import ThankYouSection from './components/ThankYouSection';
 import AmbientParticles from './components/AmbientParticles';
 import AudioAtmosphere, { toggleGlobalAudio } from './components/AudioAtmosphere';
 import MusicButton from './components/MusicButton';
+import InvitationBox from './components/InvitationBox';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('invitation');
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [rsvpSubmission, setRsvpSubmission] = useState(null);
   const [editingRsvpData, setEditingRsvpData] = useState(null);
-
 
   const handleEditRsvp = () => {
     if (rsvpSubmission) {
@@ -62,11 +62,13 @@ export default function App() {
   const handleRsvpSubmitted = (data) => {
     setRsvpSubmission(data);
     setEditingRsvpData(data);
-    // Keep user in RSVP section to view the confirmed/updated card in place
   };
 
   return (
     <div className="min-h-screen bg-[#12141C] text-[#F3EFE4] relative font-sans-ui selection:bg-[#D2A85C]/30 selection:text-[#E7CE9C]">
+      {/* Royal Opening Box / Unboxing Page Overlay */}
+      <InvitationBox onOpen={() => setIsAudioPlaying(true)} />
+
       {/* Subtle Golden Bokeh Particles */}
       <AmbientParticles />
 
